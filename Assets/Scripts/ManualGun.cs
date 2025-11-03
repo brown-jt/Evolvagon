@@ -62,9 +62,5 @@ public class ManualGun : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * projectileSpeed;
-
-        // Rotate projectile to face direction
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        projectile.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

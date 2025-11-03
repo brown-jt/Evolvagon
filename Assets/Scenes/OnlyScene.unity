@@ -768,6 +768,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5366540420478877125, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+      propertyPath: fireRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5829825364881657954, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: orthographic size
       value: 8
