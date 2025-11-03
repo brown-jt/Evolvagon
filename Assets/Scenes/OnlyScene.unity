@@ -570,6 +570,8 @@ MonoBehaviour:
   enemiesParent: {fileID: 1047373893}
   spawnMarkerPrefab: {fileID: 5096641622817195564, guid: 20cf6bd888654f448b4829f3286673d1, type: 3}
   spawnDelay: 1
+  spawnInterval: 3
+  numberToSpawn: 5
 --- !u!1 &1842985048
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +834,18 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
+    - target: {fileID: 8119421375601709102, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119421375601709102, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119421375601709102, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 8373219210892204050, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: m_Sprite
       value: 

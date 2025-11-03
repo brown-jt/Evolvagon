@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy Spawn Settings")]
+    [Header("References")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private EdgeCollider2D gameBounds;
     [SerializeField] private Transform enemiesParent;
-
-    [Header("Spawn Marker Settings")]
     [SerializeField] private GameObject spawnMarkerPrefab;
+
+    [Header("Spawn Settings")]
     [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private int numberToSpawn = 2;
 
     private float minX, maxX, minY, maxY;
 
     // Debug testing spawns
-    private float spawnInterval = 1f;
     private float spawnTimer = 0f;
 
     private void Awake()
@@ -42,13 +43,15 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnTimer >= spawnInterval)
         {
-            SpawnEnemy();
+            SpawnEnemies(numberToSpawn);
             spawnTimer = 0f;
         }
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemies(int num)
     {
+        for (int i = 0; i < num; i++)
+        {
         float spawnX = Random.Range(minX, maxX);
         float spawnY = Random.Range(minY, maxY);
 
@@ -57,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject markerObj = Instantiate(spawnMarkerPrefab, spawnPosition, Quaternion.identity);
 
         StartCoroutine(SpawnEnemyAfterDelay(spawnPosition, spawnDelay, markerObj));
+        }
     }
 
     IEnumerator SpawnEnemyAfterDelay(Vector2 position, float delay, GameObject marker)
