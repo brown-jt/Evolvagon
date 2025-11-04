@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float expReward = 10f;
     [SerializeField] private int gemReward = 5;
 
+    [Header("Enemy Sounds")]
+    [SerializeField] private AudioClip deathSound;
+
     private Rigidbody2D rb;
     private Transform spriteTransform;
     private bool isKnockedBack = false;
@@ -86,6 +89,7 @@ public class Enemy : MonoBehaviour
             if (UnityEngine.Random.value < 0.1f) 
                 playerStats.AddGems(gemReward);
         }
+        AudioManager.Instance.PlaySFX(deathSound);
         Destroy(gameObject);
     }
 

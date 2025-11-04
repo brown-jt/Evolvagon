@@ -21,6 +21,8 @@ public class DifficultyHandler : MonoBehaviour
     private float elapsedTime = 0f;
     private int totalDifficulties;
 
+    public float ElapsedTime => elapsedTime;
+
     private void Awake()
     {
         totalDifficulties = System.Enum.GetValues(typeof(Difficulty)).Length;

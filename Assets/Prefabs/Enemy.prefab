@@ -221,6 +221,7 @@ MonoBehaviour:
   currentHealth: 0
   expReward: 10
   gemReward: 2
+  deathSound: {fileID: 8300000, guid: 2381e6e4c693a2440b622da42290f75a, type: 3}
 --- !u!50 &3694494197498073526
 Rigidbody2D:
   serializedVersion: 5
