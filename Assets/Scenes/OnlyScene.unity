@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39e6d8dd1676694cb06acd783f6533a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  BGMusicSource: {fileID: 1949525174}
   SFXSource: {fileID: 1233834818}
 --- !u!1 &827730034
 GameObject:
@@ -1185,7 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42e2c1584fc0eb488612a8ff3dfa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  difficultyDuration: 6
+  difficultyDuration: 60
   difficultyText: {fileID: 710333363}
 --- !u!114 &1046044125
 MonoBehaviour:
