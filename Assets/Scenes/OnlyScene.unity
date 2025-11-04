@@ -1497,12 +1497,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   enemyPrefab: {fileID: 742494089636796778, guid: 4b3e1321703b4b545aa2aa53ae9b2ec0, type: 3}
-  gameBounds: {fileID: 1518320213}
   enemiesParent: {fileID: 1047373893}
   spawnMarkerPrefab: {fileID: 5096641622817195564, guid: 20cf6bd888654f448b4829f3286673d1, type: 3}
+  gameBounds: {fileID: 1518320213}
+  mainCamera: {fileID: 827730038}
   spawnDelay: 1
-  spawnInterval: 3
-  numberToSpawn: 5
+  spawnInterval: 2
+  numberToSpawn: 1
 --- !u!1 &1842985048
 GameObject:
   m_ObjectHideFlags: 0

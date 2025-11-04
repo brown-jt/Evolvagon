@@ -5,9 +5,10 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private EdgeCollider2D gameBounds;
     [SerializeField] private Transform enemiesParent;
     [SerializeField] private GameObject spawnMarkerPrefab;
+    [SerializeField] private EdgeCollider2D gameBounds;
+    [SerializeField] private Camera mainCamera;
 
     [Header("Spawn Settings")]
     [SerializeField] private float spawnDelay = 1f;
@@ -20,7 +21,10 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTimer = 0f;
 
     private void Awake()
-    {
+    { 
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
         // Calculate bounds from EdgeCollider2D
         Vector2[] points = gameBounds.points;
         minX = points[0].x;
@@ -48,19 +52,43 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SpawnEnemies(int num)
+    private void SpawnEnemies(int num)
     {
         for (int i = 0; i < num; i++)
         {
-        float spawnX = Random.Range(minX, maxX);
-        float spawnY = Random.Range(minY, maxY);
+            Vector2 spawnPosition = GetRandomPositionInVisibleBounds();
 
-        Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+            GameObject markerObj = Instantiate(spawnMarkerPrefab, spawnPosition, Quaternion.identity);
 
-        GameObject markerObj = Instantiate(spawnMarkerPrefab, spawnPosition, Quaternion.identity);
-
-        StartCoroutine(SpawnEnemyAfterDelay(spawnPosition, spawnDelay, markerObj));
+            StartCoroutine(SpawnEnemyAfterDelay(spawnPosition, spawnDelay, markerObj));
         }
+    }
+
+    private Vector2 GetRandomPositionInVisibleBounds()
+    {
+        // Calculating camera spawn areas
+        float zDistance = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
+        Vector3 camBottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, zDistance));
+        Vector3 camTopRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, zDistance));
+
+        // Overlapping the camera bounds within the playable game bounds
+        float visibleMinX = Mathf.Max(minX, camBottomLeft.x);
+        float visibleMaxX = Mathf.Min(maxX, camTopRight.x);
+        float visibleMinY = Mathf.Max(minY, camBottomLeft.y);
+        float visibleMaxY = Mathf.Min(maxY, camTopRight.y);
+
+        // If no overlap, return center of game bounds as a fallback
+        if (visibleMinX >= visibleMaxX || visibleMinY >= visibleMaxY)
+        {
+            float centerX = (minX + maxX) * 0.5f;
+            float centerY = (minY + maxY) * 0.5f;
+            return new Vector2(centerX, centerY);
+        }
+
+        float x = Random.Range(visibleMinX, visibleMaxX);
+        float y = Random.Range(visibleMinY, visibleMaxY);
+
+        return new Vector2(x, y);
     }
 
     IEnumerator SpawnEnemyAfterDelay(Vector2 position, float delay, GameObject marker)

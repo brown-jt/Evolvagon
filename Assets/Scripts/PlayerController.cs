@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private InputActionReference moveAction;
 
-    private Vector2 moveInput;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -14,14 +15,21 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Called by Input System
-    public void OnMove(InputAction.CallbackContext context)
+    private void OnEnable()
     {
-        moveInput = context.ReadValue<Vector2>();
+        // Enable the input action when this component is active
+        moveAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // Disable when not needed
+        moveAction.action.Disable();
     }
 
     private void FixedUpdate()
     {
+        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
         rb.linearVelocity = moveInput * moveSpeed;
     }
 }
