@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Rewards")]
     [SerializeField] private float expReward = 10f;
-    [SerializeField] private int goldReward = 5;
+    [SerializeField] private int gemReward = 5;
 
     private Rigidbody2D rb;
     private Transform spriteTransform;
@@ -73,7 +73,10 @@ public class Enemy : MonoBehaviour
         if (playerStats != null)
         {
             playerStats.AddExperience(expReward);
-            playerStats.AddGold(goldReward);
+
+            // 10% chance to add gems
+            if (Random.value < 0.1f) 
+                playerStats.AddGems(gemReward);
         }
         Destroy(gameObject);
     }

@@ -143,8 +143,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   maxHealth: 1
   currentHealth: 0
-  expReward: 100
-  goldReward: 5
+  expReward: 10
+  gemReward: 2
 --- !u!50 &3694494197498073526
 Rigidbody2D:
   serializedVersion: 5

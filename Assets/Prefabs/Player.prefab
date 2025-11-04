@@ -386,7 +386,7 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   moveSpeed: 5
-  attackRange: 5
+  attackRange: 0.5
   attackDamage: 1
   attackSpeed: 0.5
   critMultiplier: 2

@@ -27,13 +27,13 @@ public class PlayerUIHandler : MonoBehaviour
         playerStats.OnHealthChanged += UpdateHealthBar;
         playerStats.OnExperienceChanged += UpdateExperienceBar;
         playerStats.OnLevelChanged += UpdateExperienceBarLevel;
-        playerStats.OnGoldChanged += UpdateGold;
+        playerStats.OnGemsChanged += UpdateGems;
 
         // Initialize the UI immediately
         UpdateHealthBar(playerStats.CurrentHealth, playerStats.MaxHealth);
         UpdateExperienceBar(playerStats.GetExperiencePercentage());
         UpdateExperienceBarLevel(playerStats.Level);
-        UpdateGold(playerStats.Gold);
+        UpdateGems(playerStats.Gems);
     }
 
     private void OnDestroy()
@@ -43,7 +43,7 @@ public class PlayerUIHandler : MonoBehaviour
             playerStats.OnHealthChanged -= UpdateHealthBar;
             playerStats.OnExperienceChanged -= UpdateExperienceBar;
             playerStats.OnLevelChanged -= UpdateExperienceBarLevel;
-            playerStats.OnGoldChanged -= UpdateGold;
+            playerStats.OnGemsChanged -= UpdateGems;
         }
     }
 
@@ -62,11 +62,12 @@ public class PlayerUIHandler : MonoBehaviour
 
     private void UpdateExperienceBarLevel(int level)
     {
-        experienceText.text = $"LV.{level}";
+        string levelText = level == 9 ? "MAX" : level.ToString();
+        experienceText.text = $"LV.{levelText}";
     }
 
-    private void UpdateGold(int amount)
+    private void UpdateGems(int amount)
     {
-        // TODO
+        goldText.text = amount.ToString();
     }
 }
