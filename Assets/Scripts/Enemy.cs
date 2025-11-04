@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
         // If critical hit
         if (data.isCritical)
-            finalDamage = Mathf.RoundToInt(finalDamage * data.critMultiplier);
+            finalDamage = finalDamage * data.critMultiplier;
 
         currentHealth -= Mathf.RoundToInt(finalDamage);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour
     
     private void Die()
     {
+        AudioManager.Instance.PlaySFX(deathSound);
         PlayerStatsHandler playerStats = player.GetComponent<PlayerStatsHandler>();
         if (playerStats != null)
         {
@@ -90,7 +91,6 @@ public class Enemy : MonoBehaviour
             if (UnityEngine.Random.value < 0.1f) 
                 playerStats.AddGems(gemReward);
         }
-        AudioManager.Instance.PlaySFX(deathSound);
         GameManager.Instance.AddScore(baseScore);
         Destroy(gameObject);
     }
