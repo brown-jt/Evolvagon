@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Rewards")]
     [SerializeField] private float expReward = 10f;
     [SerializeField] private int gemReward = 5;
+    [SerializeField] private int baseScore = 50;
 
     [Header("Enemy Sounds")]
     [SerializeField] private AudioClip deathSound;
@@ -90,6 +91,7 @@ public class Enemy : MonoBehaviour
                 playerStats.AddGems(gemReward);
         }
         AudioManager.Instance.PlaySFX(deathSound);
+        GameManager.Instance.AddScore(baseScore);
         Destroy(gameObject);
     }
 
