@@ -10,6 +10,7 @@ public class ManualGun : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private Transform aimCursor;
+    [SerializeField] private AudioClip gunSound;
 
     [Header("Input")]
     [SerializeField] private InputActionReference fireAction;
@@ -78,5 +79,8 @@ public class ManualGun : MonoBehaviour
         Rigidbody2D rb = projectileObject.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * projectileSpeed;
+
+        // Play SFX
+        AudioManager.Instance.PlaySFX(gunSound);
     }
 }

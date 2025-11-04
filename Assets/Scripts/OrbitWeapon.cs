@@ -14,6 +14,7 @@ public class OrbitWeapon : MonoBehaviour
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float detectionRadius = 5f;
     [SerializeField] private CircleCollider2D detectionCollider;
+    [SerializeField] private AudioClip gunSound;
 
     private Transform playerTransform;
     private float nextFireTime = 0f;
@@ -88,6 +89,9 @@ public class OrbitWeapon : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * projectileSpeed;
+
+        // Play SFX
+        AudioManager.Instance.PlaySFX(gunSound);
     }
 
     private GameObject GetClosestEnemy()

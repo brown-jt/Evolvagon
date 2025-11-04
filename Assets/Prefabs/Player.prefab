@@ -168,6 +168,7 @@ MonoBehaviour:
   projectileSpeed: 10
   detectionRadius: 5
   detectionCollider: {fileID: 8659175604500274754}
+  gunSound: {fileID: 8300000, guid: fcd37dc6910448249a1534becc8dfc11, type: 3}
 --- !u!58 &8659175604500274754
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
   projectileSpeed: 10
   aimCursor: {fileID: 3057493791863484040}
+  gunSound: {fileID: 0}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &3997909893924640271
 GameObject:
