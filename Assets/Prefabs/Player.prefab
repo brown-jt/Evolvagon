@@ -247,7 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455f96341d730d44b0fac92baa32e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectilePrefab: {fileID: 0}
+  playerStats: {fileID: 4369492254435699467}
+  projectilePrefab: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
   projectileSpeed: 10
   fireRate: 0.5
   aimCursor: {fileID: 0}
@@ -264,7 +265,8 @@ GameObject:
   - component: {fileID: 8092843278424865725}
   - component: {fileID: 4368943818658621819}
   - component: {fileID: 5643022197577852660}
-  m_Layer: 0
+  - component: {fileID: 4369492254435699467}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -303,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf888693db6b7f49b9d7d326c283386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 10
+  stats: {fileID: 0}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!50 &4368943818658621819
 Rigidbody2D:
@@ -368,6 +370,29 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &4369492254435699467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997909893924640271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567b0e6315b6533489e7f1a4ce2ba5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 5
+  currentHealth: 0
+  moveSpeed: 5
+  attackRange: 5
+  attackDamage: 1
+  critMultiplier: 2
+  level: 1
+  experience: 0
+  gold: 0
+  baseExperienceToNextLevel: 100
+  experienceGrowthRate: 1.5
 --- !u!1 &4834092413274742982
 GameObject:
   m_ObjectHideFlags: 0
