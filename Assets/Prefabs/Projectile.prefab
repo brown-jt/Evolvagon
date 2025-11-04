@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6826274448449318716}
-  - component: {fileID: 4952315615794879619}
+  - component: {fileID: 9216090916526576489}
   - component: {fileID: 8377151544759881765}
   - component: {fileID: 6087831720290385913}
   m_Layer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 5243628141322319708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4952315615794879619
+--- !u!114 &9216090916526576489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4738439718536409011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60dd4c32b363eeb41b0dab6cc821c1fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b721f70a0acf5544a1d994f5b2ece86, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  lifetime: 0.5
+  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  lifetime: 1
+  projectileData:
+    damage: 0
+    isCritical: 0
+    critMultiplier: 0
 --- !u!50 &8377151544759881765
 Rigidbody2D:
   serializedVersion: 5

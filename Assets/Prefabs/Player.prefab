@@ -212,7 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4866290038598616685}
-  - component: {fileID: 7396238206185575499}
+  - component: {fileID: 345941844547600600}
   m_Layer: 0
   m_Name: PointGun
   m_TagString: Untagged
@@ -235,7 +235,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6798299168314367435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7396238206185575499
+--- !u!114 &345941844547600600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,9 +244,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2953972430231015270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a455f96341d730d44b0fac92baa32e98, type: 3}
+  m_Script: {fileID: 11500000, guid: 73b6423e153fc2545a87e77519548da8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::ManualGun
+  playerStats: {fileID: 444692808385090977}
   projectilePrefab: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
   projectileSpeed: 10
   fireRate: 0.5
@@ -261,9 +262,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6798299168314367435}
-  - component: {fileID: 8092843278424865725}
   - component: {fileID: 4368943818658621819}
   - component: {fileID: 5643022197577852660}
+  - component: {fileID: 4864255312215775399}
+  - component: {fileID: 444692808385090977}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -290,20 +292,6 @@ Transform:
   - {fileID: 5433137826297793762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8092843278424865725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3997909893924640271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf888693db6b7f49b9d7d326c283386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 10
-  moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!50 &4368943818658621819
 Rigidbody2D:
   serializedVersion: 5
@@ -367,6 +355,43 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &4864255312215775399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997909893924640271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ed7287e77b02c449546f551f4e6485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  stats: {fileID: 444692808385090977}
+  moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &444692808385090977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997909893924640271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567b0e6315b6533489e7f1a4ce2ba5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsHandler
+  maxHealth: 5
+  currentHealth: 0
+  moveSpeed: 5
+  attackRange: 5
+  attackDamage: 1
+  critMultiplier: 2
+  level: 1
+  experience: 0
+  gold: 0
+  baseExperienceToNextLevel: 100
+  experienceGrowthRate: 2
 --- !u!1 &4834092413274742982
 GameObject:
   m_ObjectHideFlags: 0

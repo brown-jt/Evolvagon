@@ -2,13 +2,21 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyFollowScript : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Follow Settings")]
     [SerializeField] private Transform player;
     [SerializeField] private float speed = 3f;
-    [SerializeField] private float knockbackForce = 50f;
+    [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.5f;
+
+    [Header("Enemy Stats")]
+    [SerializeField] private int maxHealth = 2;
+    [SerializeField] private int currentHealth;
+
+    [Header("Enemy Rewards")]
+    [SerializeField] private float expReward = 10f;
+    [SerializeField] private int goldReward = 5;
 
     private Rigidbody2D rb;
     private Transform spriteTransform;
@@ -19,6 +27,11 @@ public class EnemyFollowScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteTransform = GetComponentInChildren<SpriteRenderer>().transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void Start()
+    { 
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -38,13 +51,49 @@ public class EnemyFollowScript : MonoBehaviour
         }
     }
 
+    public void TakeDamage(ProjectileData data)
+    {
+        float finalDamage = data.damage;
+
+        // If critical hit
+        if (data.isCritical)
+            finalDamage = Mathf.RoundToInt(finalDamage * data.critMultiplier);
+
+        currentHealth -= Mathf.RoundToInt(finalDamage);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    
+    private void Die()
+    {
+        PlayerStatsHandler playerStats = player.GetComponent<PlayerStatsHandler>();
+        if (playerStats != null)
+        {
+            playerStats.AddExperience(expReward);
+            playerStats.AddGold(goldReward);
+        }
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isKnockedBack)
         {
+            // Get the player stats for easy method calling
+            PlayerStatsHandler playerStats = collision.gameObject.GetComponent<PlayerStatsHandler>();
+            if (playerStats != null)
+            {
+                playerStats.TakeDamage(1);
+            }
+
+            // Now do the knockback effect
             StartCoroutine(Knockback(collision));
         }
     }
+
     IEnumerator Knockback(Collision2D collision)
     {
         isKnockedBack = true;
