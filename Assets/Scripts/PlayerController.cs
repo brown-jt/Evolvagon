@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private PlayerStatsHandler stats;
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private InputActionReference moveAction;
 
     private Rigidbody2D rb;
@@ -30,6 +30,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
-        rb.linearVelocity = moveInput * stats.MoveSpeed;
+        rb.linearVelocity = moveInput * moveSpeed;
     }
 }

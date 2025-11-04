@@ -1,11 +1,9 @@
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ManualGun : MonoBehaviour
 {
-    [Header("Player Stats Reference")]
-    [SerializeField] private PlayerStatsHandler playerStats;
-
     [Header("Manual Gun Settings")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed = 10f;
@@ -58,24 +56,10 @@ public class ManualGun : MonoBehaviour
         Vector2 direction = (aimCursor.position - transform.position).normalized;
 
         // Instantiate projectile
-        GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-
-        // Apply projectile data
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        if (projectile != null)
-        {
-            ProjectileData data = new ProjectileData
-            (
-                damage: playerStats.AttackDamage,
-                isCritical: Random.value < 0.2f,
-                critMultiplier: playerStats.CritMultiplier
-            );
-
-            projectile.projectileData = data;
-        }
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
         // Apply velocity
-        Rigidbody2D rb = projectileObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * projectileSpeed;
     }

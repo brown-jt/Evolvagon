@@ -3,8 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
-    [SerializeField] private float lifetime = 1f;
-    public ProjectileData projectileData;
+    public float lifetime = 3f;
 
     void Start()
     {
@@ -15,13 +14,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Get the enemy script to handle logic within
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(projectileData);
-            }
+            // Handle collision with enemy e.g., apply damage here if needed
             Destroy(gameObject);
+            Destroy(other.gameObject);
         }
         else if (other.CompareTag("GameBounds"))
         {
