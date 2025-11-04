@@ -58,10 +58,26 @@ public class OrbitWeapon : MonoBehaviour
         Vector2 direction = (target.transform.position - transform.position).normalized;
 
         // Instantiate projectile
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+        // Apply projectile data
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            ProjectileData data = new ProjectileData
+            (
+                damage: 1f,
+                range: 1f,
+                isCritical: Random.value < 0.2f,
+                critMultiplier: 2f
+            );
+
+            projectile.projectileData = data;
+        }
+
 
         // Alter colour of projectile
-        SpriteRenderer sr = projectile.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer sr = projectileObject.GetComponentInChildren<SpriteRenderer>();
         if (sr)
         {
             ColorUtility.TryParseHtmlString("#e3ce20", out Color newColour);
