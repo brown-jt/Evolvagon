@@ -3,9 +3,9 @@ using UnityEngine;
 public class CameraClamp : MonoBehaviour
 {
     [Header("Target and Bounds")]
-    public Transform target;
-    public EdgeCollider2D boundsCollider;
-
+    [SerializeField] private Transform target;
+    [SerializeField] private EdgeCollider2D boundsCollider;
+    
     private Camera cam;
     private float camHeight;
     private float camWidth;
@@ -32,15 +32,13 @@ public class CameraClamp : MonoBehaviour
         // Desired camera position (following the player)
         Vector3 desiredPos = new Vector3(target.position.x, target.position.y, transform.position.z);
 
-        // Clamp X only if needed
+        // Clamp camera position within bounds
         if (desiredPos.x < minX) desiredPos.x = minX;
         if (desiredPos.x > maxX) desiredPos.x = maxX;
-
-        // Clamp Y only if needed
         if (desiredPos.y < minY) desiredPos.y = minY;
         if (desiredPos.y > maxY) desiredPos.y = maxY;
 
-        // Smoothly move camera
+        // Move the camera to the position
         transform.position = desiredPos;
     }
 }
