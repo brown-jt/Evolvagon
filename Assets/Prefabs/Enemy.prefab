@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6108295426928350359}
-  - component: {fileID: 391787465688353489}
+  - component: {fileID: 1168109389977960865}
   - component: {fileID: 3694494197498073526}
   - component: {fileID: 6222198687534407240}
   m_Layer: 6
@@ -125,7 +125,7 @@ Transform:
   - {fileID: 2873780805730131393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &391787465688353489
+--- !u!114 &1168109389977960865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,16 +134,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 742494089636796778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a62f015dcccb3548adfa3ef33cb893f, type: 3}
+  m_Script: {fileID: 11500000, guid: b31be7d3b1eb3a948b2eafa9c5d0bb9e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
   player: {fileID: 0}
   speed: 3
-  knockbackForce: 10
+  knockbackForce: 5
   knockbackDuration: 0.5
   maxHealth: 2
   currentHealth: 0
-  expReward: 25
+  expReward: 10
   goldReward: 5
 --- !u!50 &3694494197498073526
 Rigidbody2D:

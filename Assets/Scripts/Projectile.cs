@@ -3,12 +3,11 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
-    [SerializeField] private float lifetime = 1f;
     public ProjectileData projectileData;
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Destroy(gameObject, projectileData.range);
     }
 
     void OnTriggerEnter2D(Collider2D other)

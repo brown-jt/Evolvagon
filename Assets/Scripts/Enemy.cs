@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Follow Settings")]
     [SerializeField] private Transform player;
     [SerializeField] private float speed = 3f;
-    [SerializeField] private float knockbackForce = 50f;
+    [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.5f;
 
     [Header("Enemy Stats")]
