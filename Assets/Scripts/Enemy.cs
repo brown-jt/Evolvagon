@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -22,6 +23,11 @@ public class Enemy : MonoBehaviour
     private Transform spriteTransform;
     private bool isKnockedBack = false;
 
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+
+    public event Action<int, int> OnHealthChanged; // CurrentHealth, MaxHealth
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,6 +38,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     { 
         currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
     private void Update()
@@ -60,6 +67,7 @@ public class Enemy : MonoBehaviour
             finalDamage = Mathf.RoundToInt(finalDamage * data.critMultiplier);
 
         currentHealth -= Mathf.RoundToInt(finalDamage);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -75,7 +83,7 @@ public class Enemy : MonoBehaviour
             playerStats.AddExperience(expReward);
 
             // 10% chance to add gems
-            if (Random.value < 0.1f) 
+            if (UnityEngine.Random.value < 0.1f) 
                 playerStats.AddGems(gemReward);
         }
         Destroy(gameObject);

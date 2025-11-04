@@ -68,7 +68,7 @@ public class ManualGun : MonoBehaviour
             (
                 damage: playerStats.AttackDamage,
                 range: playerStats.AttackRange,
-                isCritical: Random.value < 0.2f,
+                isCritical: UnityEngine.Random.value < 0.2f,
                 critMultiplier: playerStats.CritMultiplier
             );
 
