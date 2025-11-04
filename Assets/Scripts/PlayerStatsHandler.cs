@@ -9,7 +9,8 @@ public class PlayerStatsHandler : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float attackRange = 5f;
     [SerializeField] private float attackDamage = 1f;
-    [SerializeField] private float attackSpeed = 0.5f; 
+    [SerializeField] private float attackSpeed = 0.5f;
+    [SerializeField] private float critChance = 0.1f;
     [SerializeField] private float critMultiplier = 2f;
 
     [Header("Game Progession")]
@@ -30,6 +31,7 @@ public class PlayerStatsHandler : MonoBehaviour
     public float AttackRange => attackRange;
     public float AttackDamage => attackDamage;
     public float AttackSpeed => attackSpeed;
+    public float CritChance => critChance;
     public float CritMultiplier => critMultiplier;
     public int Level => level;
     public int Gems => gems;
