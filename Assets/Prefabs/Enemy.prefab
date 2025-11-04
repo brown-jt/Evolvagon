@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   player: {fileID: 0}
   speed: 3
-  knockbackForce: 5
+  knockbackForce: 10
   knockbackDuration: 0.5
   maxHealth: 2
   currentHealth: 0
