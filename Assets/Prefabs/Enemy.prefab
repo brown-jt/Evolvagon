@@ -141,9 +141,9 @@ MonoBehaviour:
   speed: 3
   knockbackForce: 10
   knockbackDuration: 0.5
-  maxHealth: 2
+  maxHealth: 1
   currentHealth: 0
-  expReward: 10
+  expReward: 100
   goldReward: 5
 --- !u!50 &3694494197498073526
 Rigidbody2D:

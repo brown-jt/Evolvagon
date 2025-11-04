@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c493804339de254a9bd3e734d4b902f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  playerStats: {fileID: 444692808385090977}
   playerSprites:
   - {fileID: 8341946357961751100, guid: d95ca6a33476f59499868eddf67136fa, type: 3}
   - {fileID: -7188427516101529974, guid: d95ca6a33476f59499868eddf67136fa, type: 3}
@@ -250,7 +251,6 @@ MonoBehaviour:
   playerStats: {fileID: 444692808385090977}
   projectilePrefab: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
   projectileSpeed: 10
-  fireRate: 0.5
   aimCursor: {fileID: 3057493791863484040}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &3997909893924640271
@@ -386,6 +386,7 @@ MonoBehaviour:
   moveSpeed: 5
   attackRange: 5
   attackDamage: 1
+  attackSpeed: 0.5
   critMultiplier: 2
   level: 1
   experience: 0
