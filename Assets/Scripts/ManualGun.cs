@@ -9,7 +9,6 @@ public class ManualGun : MonoBehaviour
     [Header("Manual Gun Settings")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private Transform aimCursor;
 
     [Header("Input")]
@@ -43,7 +42,7 @@ public class ManualGun : MonoBehaviour
         if (isFiring && Time.time >= nextFireTime)
         {
             FireProjectile();
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + playerStats.AttackSpeed;
         }
     }
 
@@ -67,6 +66,7 @@ public class ManualGun : MonoBehaviour
             ProjectileData data = new ProjectileData
             (
                 damage: playerStats.AttackDamage,
+                range: playerStats.AttackRange,
                 isCritical: Random.value < 0.2f,
                 critMultiplier: playerStats.CritMultiplier
             );

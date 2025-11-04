@@ -1501,7 +1501,7 @@ MonoBehaviour:
   gameBounds: {fileID: 1518320213}
   mainCamera: {fileID: 827730038}
   spawnDelay: 1
-  spawnInterval: 2
+  spawnInterval: 1
   numberToSpawn: 1
 --- !u!1 &1911517922
 GameObject:
@@ -1529,7 +1529,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1953755162}
@@ -1769,6 +1769,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+      propertyPath: attackRange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3057493791863484040, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8
