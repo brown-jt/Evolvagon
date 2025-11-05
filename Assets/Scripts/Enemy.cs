@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         // If past elapsed Insanity time (5minutes) just start mega scaling
         if (difficultyHandler.ElapsedTime > 300f)
         {
-            difficultyScale += ((difficultyHandler.ElapsedTime - 30f) / 50);
+            difficultyScale += ((difficultyHandler.ElapsedTime - 300f) / 50);
             Debug.Log($"Current difficulty scale: {difficultyScale}");
         }
 
