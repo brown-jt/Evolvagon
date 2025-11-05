@@ -118,10 +118,10 @@ public class UpgradeManager : MonoBehaviour
             UpgradeRarity.Common => 1.05f,
             UpgradeRarity.Uncommon => 1.10f,
             UpgradeRarity.Rare => 1.20f,
-            UpgradeRarity.Epic => 1.35f,
-            UpgradeRarity.Legendary => 1.50f,
-            UpgradeRarity.Mythical => 1.75f,
-            _ => 0.05f
+            UpgradeRarity.Epic => 1.30f,
+            UpgradeRarity.Legendary => 1.40f,
+            UpgradeRarity.Mythical => 1.50f,
+            _ => 1.05f
         };
     }
 }

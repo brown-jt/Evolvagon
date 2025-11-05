@@ -62,8 +62,7 @@ public class PlayerUIHandler : MonoBehaviour
 
     private void UpdateExperienceBarLevel(int level)
     {
-        string levelText = level == 9 ? "MAX" : level.ToString();
-        experienceText.text = $"LV.{levelText}";
+        experienceText.text = $"LV.{level}";
     }
 
     private void UpdateGems(int amount)

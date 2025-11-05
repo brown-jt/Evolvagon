@@ -1299,7 +1299,6 @@ MonoBehaviour:
   oldValue: {fileID: 17307603971234310}
   newValue: {fileID: 1617727808403025445}
   icon: {fileID: 6656672380989372687}
-  upgradePanelController: {fileID: 0}
 --- !u!1 &6865244538681750050
 GameObject:
   m_ObjectHideFlags: 0

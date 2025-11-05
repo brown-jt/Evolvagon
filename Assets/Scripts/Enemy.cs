@@ -82,6 +82,15 @@ public class Enemy : MonoBehaviour
                 difficultyScale = 1.75f; break;
             case Difficulty.INSANITY:
                 difficultyScale = 2f; break;
+            default:
+                difficultyScale = 2f; break;
+        }
+
+        // If past elapsed Insanity time (5minutes) just start mega scaling
+        if (difficultyHandler.ElapsedTime > 300f)
+        {
+            difficultyScale += ((difficultyHandler.ElapsedTime - 30f) / 50);
+            Debug.Log($"Current difficulty scale: {difficultyScale}");
         }
 
         ApplyDifficultyScaling();
@@ -91,9 +100,12 @@ public class Enemy : MonoBehaviour
     {
         speed = speed * difficultyScale;
         maxHealth = Mathf.RoundToInt(maxHealth * difficultyScale);
-        expReward = expReward * difficultyScale;
         gemReward = Mathf.RoundToInt(gemReward * difficultyScale);
         baseScore = Mathf.RoundToInt(baseScore * difficultyScale);
+
+        // Only increase EXP gain during normal levels - Stop when mega scaling
+        if (difficultyHandler.ElapsedTime < 300f)
+            expReward = expReward * difficultyScale;
     }
 
     public void TakeDamage(ProjectileData data)
