@@ -43,7 +43,8 @@ public class ManualGun : MonoBehaviour
         if (isFiring && Time.time >= nextFireTime)
         {
             FireProjectile();
-            nextFireTime = Time.time + playerStats.AttackSpeed;
+            float fireInterval = 1f / Mathf.Max(playerStats.AttackSpeed, 0.01f);
+            nextFireTime = Time.time + fireInterval;
         }
     }
 

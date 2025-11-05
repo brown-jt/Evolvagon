@@ -9,7 +9,7 @@ public class PlayerStatsHandler : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float attackRange = 5f;
     [SerializeField] private float attackDamage = 1f;
-    [SerializeField] private float attackSpeed = 0.5f;
+    [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float critChance = 0.1f;
     [SerializeField] private float critMultiplier = 2f;
 
@@ -20,9 +20,7 @@ public class PlayerStatsHandler : MonoBehaviour
 
     [Header("Level Scaling")]
     [SerializeField] private float baseExperienceToNextLevel = 100f;
-    [SerializeField] private float experienceGrowthRate = 2f;
-
-    private int maxLevel = 9; // I know this since I have 8 sprites and we start at level 1
+    [SerializeField] private float experienceGrowthRate = 1.5f;
 
     // Public getters for accessing stats
     public int CurrentHealth => currentHealth;
@@ -41,6 +39,8 @@ public class PlayerStatsHandler : MonoBehaviour
     public event Action<float> OnExperienceChanged; // CurrentExperience as a percentage
     public event Action<int> OnLevelChanged; // Current Level
     public event Action<int> OnGemsChanged; // Current Gems
+    public event Action<string, float> OnFloatStatChanged;
+    public event Action<string, int> OnIntStatChanged;
 
     private void Start()
     {
@@ -124,28 +124,17 @@ public class PlayerStatsHandler : MonoBehaviour
     private void CheckLevelUp()
     {
         // Only level when below max
-        while (experience >= GetExperienceForNextLevel() && level < maxLevel)
+        while (experience >= GetExperienceForNextLevel())
         {
             experience -= GetExperienceForNextLevel();
             HandleLevelUp();
         }
-
-        // Otherwise cap experience at max level
-        if (level >= maxLevel)
-        {
-            experience = GetExperienceForNextLevel();
-            OnExperienceChanged?.Invoke(1f);
-        }
-        else
-        {
-            OnExperienceChanged?.Invoke(GetExperiencePercentage());
-        }
+        
+        OnExperienceChanged?.Invoke(GetExperiencePercentage());
     }
 
     private void HandleLevelUp()
     {
-        if (level >= maxLevel) return;
-
         level++;
         OnLevelChanged?.Invoke(level);
         Debug.Log($"Player leveled up to level {level}!");
@@ -154,5 +143,47 @@ public class PlayerStatsHandler : MonoBehaviour
     public float GetExperiencePercentage()
     {
         return experience / GetExperienceForNextLevel();
+    }
+
+    public void ModifyStat(string stat, float value)
+    {
+        switch (stat)
+        {
+            case "Movement Speed":
+                moveSpeed = value; break;
+            case "Damage":
+                attackDamage = value; break;
+            case "Attack Speed":
+                attackSpeed = value; break;
+            case "Attack Range":
+                attackRange = value; break;
+            case "Crit Chance":
+                critChance = value; break;
+            case "Crit Damage":
+                critMultiplier = value; break;
+        }
+
+        OnFloatStatChanged(stat, value);
+    }
+
+    public void ModifyStat(string stat, int value)
+    {
+        switch (stat)
+        {
+            case "Movement Speed":
+                moveSpeed = value; break;
+            case "Damage":
+                attackDamage = value; break;
+            case "Attack Speed":
+                attackSpeed = value; break;
+            case "Attack Range":
+                attackRange = value; break;
+            case "Crit Chance":
+                critChance = value; break;
+            case "Crit Damage":
+                critMultiplier = value; break;
+        }
+
+        OnIntStatChanged(stat, value);
     }
 }

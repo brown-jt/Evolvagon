@@ -8,7 +8,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private PlayerStatsHandler playerStats;
     [SerializeField] private UpgradeIconSet upgradeIconSet;
 
-    private int numberOfOptions = 3;
+    private readonly int numberOfOptions = 3;
 
     public void GenerateUpgradeOptions()
     {
@@ -46,6 +46,7 @@ public class UpgradeManager : MonoBehaviour
         float rarityMultiplier = GetRarityMultiplier(rarity);
         float oldVal = 0;
         float newVal = 0;
+        string name = "";
         string description = "";
         Sprite icon = null;
 
@@ -54,50 +55,56 @@ public class UpgradeManager : MonoBehaviour
             case UpgradeType.MovementSpeed:
                 oldVal = playerStats.MoveSpeed;
                 newVal = playerStats.MoveSpeed * rarityMultiplier;
+                name = "Movement Speed";
                 description = "Gotta go fast!";
                 icon = upgradeIconSet.movementSpeedIcon;
-                return new UpgradeData(rarity, "Movement Speed", description, oldVal, newVal, icon, 
-                    () => Debug.Log("Upgrade player movement speed"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon, 
+                    () => playerStats.ModifyStat(name, newVal));
 
             case UpgradeType.Damage:
                 oldVal = playerStats.AttackDamage;
                 newVal = playerStats.AttackDamage * rarityMultiplier;
+                name = "Damage";
                 description = "Big number = Big happy";
                 icon = upgradeIconSet.damageIcon;
-                return new UpgradeData(rarity, "Damage", description, oldVal, newVal, icon,
-                    () => Debug.Log("Upgrade player damage"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon,
+                    () => playerStats.ModifyStat(name, newVal));
 
             case UpgradeType.AttackSpeed:
                 oldVal = playerStats.AttackSpeed;
                 newVal = playerStats.AttackSpeed * rarityMultiplier;
+                name = "Attack Speed";
                 description = "pew pew pew pew pew pew pew";
                 icon = upgradeIconSet.attackSpeedIcon;
-                return new UpgradeData(rarity, "Attack Speed", description, oldVal, newVal, icon,
-                    () => Debug.Log("Upgrade player attack speed"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon,
+                    () => playerStats.ModifyStat(name, newVal));
 
             case UpgradeType.AttackRange:
                 oldVal = playerStats.AttackRange;
                 newVal = playerStats.AttackRange * rarityMultiplier;
+                name = "Attack Range";
                 description = "Eye see everything";
                 icon = upgradeIconSet.attackRangeIcon;
-                return new UpgradeData(rarity, "Attack Range", description, oldVal, newVal, icon,
-                    () => Debug.Log("Upgrade player attack range"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon,
+                    () => playerStats.ModifyStat(name, newVal));
 
             case UpgradeType.CriticalChance:
                 oldVal = playerStats.CritChance;
                 newVal = playerStats.CritChance * rarityMultiplier;
+                name = "Crit Chance";
                 description = "Want more big numbers?";
                 icon = upgradeIconSet.critChanceIcon;
-                return new UpgradeData(rarity, "Crit Chance", description, oldVal, newVal, icon,
-                    () => Debug.Log("Upgrade player crit chance"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon,
+                    () => playerStats.ModifyStat(name, newVal));
 
             case UpgradeType.CriticalDamage:
                 oldVal = playerStats.CritMultiplier;
                 newVal = playerStats.CritMultiplier * rarityMultiplier;
+                name = "Crit Damage";
                 description = "Make big number even bigger";
                 icon = upgradeIconSet.critDamageIcon;
-                return new UpgradeData(rarity, "Crit Damage", description, oldVal, newVal, icon,
-                    () => Debug.Log("Upgrade player crit damage"));
+                return new UpgradeData(rarity, name, description, oldVal, newVal, icon,
+                    () => playerStats.ModifyStat(name, newVal));
 
             default:
                 return null;
