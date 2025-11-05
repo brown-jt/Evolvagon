@@ -13,7 +13,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private float spawnDelay = 1f;
     [SerializeField] private float spawnInterval = 2f;
-    [SerializeField] private int numberToSpawn = 2;
+    [SerializeField] private int numberToSpawn = 1;
+
+    [Header("Difficulty Handler")]
+    [SerializeField] private DifficultyHandler difficultyHandler;
 
     private float minX, maxX, minY, maxY;
 
@@ -43,6 +46,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        CalculateSpawnRatesWithDifficulty(difficultyHandler.CurrentDifficulty);
+
         spawnTimer += Time.deltaTime;
 
         if (spawnTimer >= spawnInterval)
@@ -94,7 +99,39 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemyAfterDelay(Vector2 position, float delay, GameObject marker)
     {
         yield return new WaitForSeconds(delay);
-        Instantiate(enemyPrefab, position, Quaternion.identity, enemiesParent);
+        GameObject enemyObj = Instantiate(enemyPrefab, position, Quaternion.identity, enemiesParent);
         Destroy(marker);
+    }
+
+    private void CalculateSpawnRatesWithDifficulty(Difficulty difficulty)
+    {
+        switch (difficulty)
+        {
+            case Difficulty.EASY:
+                spawnDelay = 1.5f;
+                spawnInterval = 1f;
+                numberToSpawn = 1;
+                break;
+            case Difficulty.MEDIUM:
+                spawnDelay = 1f;
+                spawnInterval = 0.8f;
+                numberToSpawn = 2;
+                break;
+            case Difficulty.HARD:
+                spawnDelay = 1f;
+                spawnInterval = 0.6f;
+                numberToSpawn = 2;
+                break;
+            case Difficulty.EXTREME:
+                spawnDelay = 0.75f;
+                spawnInterval = 0.6f;
+                numberToSpawn = 3;
+                break;
+            case Difficulty.INSANITY:
+                spawnDelay = 0.5f;
+                spawnInterval = 0.5f;
+                numberToSpawn = 5;
+                break;
+        }
     }
 }

@@ -23,9 +23,11 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Sounds")]
     [SerializeField] private AudioClip deathSound;
 
+    private DifficultyHandler difficultyHandler;
     private Rigidbody2D rb;
     private Transform spriteTransform;
     private bool isKnockedBack = false;
+    private float difficultyScale = 1.0f;
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
@@ -37,10 +39,14 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteTransform = GetComponentInChildren<SpriteRenderer>().transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        difficultyHandler = FindFirstObjectByType<DifficultyHandler>();
     }
 
     private void Start()
-    { 
+    {
+        // Calculate spawn stats from base stats * difficulty and assign
+        CalculateStatsWithDifficulty(difficultyHandler.CurrentDifficulty);
+
         currentHealth = maxHealth;
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
@@ -60,6 +66,34 @@ public class Enemy : MonoBehaviour
             // Move enemy towards player
             transform.position += speed * Time.deltaTime * (Vector3)direction;
         }
+    }
+
+    private void CalculateStatsWithDifficulty(Difficulty difficulty)
+    {
+        switch (difficulty)
+        {
+            case Difficulty.EASY:
+                difficultyScale = 1.0f; break;
+            case Difficulty.MEDIUM:
+                difficultyScale = 1.25f; break;
+            case Difficulty.HARD:
+                difficultyScale = 1.5f; break;
+            case Difficulty.EXTREME:
+                difficultyScale = 1.75f; break;
+            case Difficulty.INSANITY:
+                difficultyScale = 2f; break;
+        }
+
+        ApplyDifficultyScaling();
+    }
+
+    private void ApplyDifficultyScaling()
+    {
+        speed = speed * difficultyScale;
+        maxHealth = Mathf.RoundToInt(maxHealth * difficultyScale);
+        expReward = expReward * difficultyScale;
+        gemReward = Mathf.RoundToInt(gemReward * difficultyScale);
+        baseScore = Mathf.RoundToInt(baseScore * difficultyScale);
     }
 
     public void TakeDamage(ProjectileData data)

@@ -28,7 +28,26 @@ public class PlayerSpriteHandler : MonoBehaviour
 
     private void UpdatePlayerSprite(int level)
     {
-        // Since level starts at 1 and index of sprites starts at 0 ensure we minus 1.
-        spriteRenderer.sprite = playerSprites[level-1];
+        switch (level)
+        {
+            case < 3:
+                spriteRenderer.sprite = playerSprites[0]; break;
+            case < 5:
+                spriteRenderer.sprite = playerSprites[1]; break;
+            case < 7:
+                spriteRenderer.sprite = playerSprites[2]; break;
+            case < 9:
+                spriteRenderer.sprite = playerSprites[3]; break;
+            case < 11:
+                spriteRenderer.sprite = playerSprites[4]; break;
+            case < 13:
+                spriteRenderer.sprite = playerSprites[5]; break;
+            case < 15:
+                spriteRenderer.sprite = playerSprites[6]; break;
+            case < 17:
+                spriteRenderer.sprite = playerSprites[7]; break;
+            default:
+                spriteRenderer.sprite = playerSprites[8]; break;
+        }
     }
 }

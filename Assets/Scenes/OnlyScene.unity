@@ -5496,6 +5496,7 @@ MonoBehaviour:
   spawnDelay: 1
   spawnInterval: 1
   numberToSpawn: 1
+  difficultyHandler: {fileID: 1046044124}
 --- !u!1 &1812552175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6817,7 +6818,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: e09e0d2c9a4a43c44a768c6b392fc5a4, type: 3}
     - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: attackSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3057493791863484040, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: m_LocalScale.x

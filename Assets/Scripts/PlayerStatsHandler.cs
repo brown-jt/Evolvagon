@@ -19,8 +19,8 @@ public class PlayerStatsHandler : MonoBehaviour
     [SerializeField] private int gems = 0;
 
     [Header("Level Scaling")]
-    [SerializeField] private float baseExperienceToNextLevel = 100f;
-    [SerializeField] private float experienceGrowthRate = 1.5f;
+    [SerializeField] private float baseExperienceToNextLevel = 50f;
+    [SerializeField] private float experienceGrowthRate = 1.1f;
 
     // Public getters for accessing stats
     public int CurrentHealth => currentHealth;
@@ -117,7 +117,6 @@ public class PlayerStatsHandler : MonoBehaviour
 
     private float GetExperienceForNextLevel()
     {
-        // Example scaling formula: baseXP * (growthRate ^ (level - 1))
         return Mathf.RoundToInt(baseExperienceToNextLevel * Mathf.Pow(experienceGrowthRate, level - 1));
     }
 
