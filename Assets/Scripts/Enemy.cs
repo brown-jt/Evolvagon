@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float knockbackDuration = 0.5f;
 
     [Header("Enemy Stats")]
-    [SerializeField] private int maxHealth = 2;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private float maxHealth = 2;
+    [SerializeField] private float currentHealth;
 
     [Header("Enemy Rewards")]
     [SerializeField] private float expReward = 10f;
@@ -29,10 +29,10 @@ public class Enemy : MonoBehaviour
     private bool isKnockedBack = false;
     private float difficultyScale = 1.0f;
 
-    public int MaxHealth => maxHealth;
-    public int CurrentHealth => currentHealth;
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
 
-    public event Action<int, int> OnHealthChanged; // CurrentHealth, MaxHealth
+    public event Action<float, float> OnHealthChanged; // CurrentHealth, MaxHealth
 
     private void Awake()
     {
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
     private void ApplyDifficultyScaling()
     {
         speed = speed * difficultyScale;
-        maxHealth = Mathf.RoundToInt(maxHealth * difficultyScale);
+        maxHealth = maxHealth * difficultyScale;
         gemReward = Mathf.RoundToInt(gemReward * difficultyScale);
         baseScore = Mathf.RoundToInt(baseScore * difficultyScale);
 
@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
         if (data.isCritical)
             finalDamage = finalDamage * data.critMultiplier;
 
-        currentHealth -= Mathf.RoundToInt(finalDamage);
+        currentHealth -= finalDamage;
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (currentHealth <= 0)

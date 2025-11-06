@@ -29,7 +29,7 @@ public class EnemyHealthBar : MonoBehaviour
         }
     }
 
-    private void UpdateHealthBar(int current, int max)
+    private void UpdateHealthBar(float current, float max)
     {
         healthBar.value = current;
         healthBar.maxValue = max;
