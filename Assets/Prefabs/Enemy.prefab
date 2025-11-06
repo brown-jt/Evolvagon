@@ -241,6 +241,7 @@ MonoBehaviour:
   gemReward: 2
   baseScore: 50
   deathSound: {fileID: 8300000, guid: 2381e6e4c693a2440b622da42290f75a, type: 3}
+  experiencePrefab: {fileID: 3318238129176189141, guid: 36773ffd1959f284584039ba25e654d5, type: 3}
 --- !u!50 &3694494197498073526
 Rigidbody2D:
   serializedVersion: 5

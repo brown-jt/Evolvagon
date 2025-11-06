@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Sounds")]
     [SerializeField] private AudioClip deathSound;
 
+    [Header("Experience Prefab")]
+    [SerializeField] private GameObject experiencePrefab;
+
     private DifficultyHandler difficultyHandler;
     private Rigidbody2D rb;
     private Transform spriteTransform;
@@ -149,12 +152,14 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        // Spawn Experience to be collected by player
+        GameObject exp = Instantiate(experiencePrefab, transform.position, Quaternion.identity);
+        exp.GetComponent<ExperiencePickup>().SetExperience(expReward);
+
         AudioManager.Instance.PlaySFX(deathSound);
         PlayerStatsHandler playerStats = player.GetComponent<PlayerStatsHandler>();
         if (playerStats != null)
         {
-            playerStats.AddExperience(expReward);
-
             // 10% chance to add gems
             if (UnityEngine.Random.value < 0.1f) 
                 playerStats.AddGems(gemReward);

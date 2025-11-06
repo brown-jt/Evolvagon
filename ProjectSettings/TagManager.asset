@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameBounds
   - Enemy
+  - Experience
   layers:
   - Default
   - TransparentFX
