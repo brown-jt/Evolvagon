@@ -149,3 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee3c002aad3b434282381c0bf43c726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  moveSpeed: 1
+  lifetime: 2
+  randomDirectionRange: {x: -1, y: 1}
+  levelUp: {fileID: 2818715053913223073}
