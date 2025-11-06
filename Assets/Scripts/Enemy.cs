@@ -23,8 +23,9 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Sounds")]
     [SerializeField] private AudioClip deathSound;
 
-    [Header("Experience Prefab")]
+    [Header("Useful Prefabs")]
     [SerializeField] private GameObject experiencePrefab;
+    [SerializeField] private GameObject damageTextPrefab;
 
     private DifficultyHandler difficultyHandler;
     private Rigidbody2D rb;
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isKnockedBack = false;
     private float difficultyScale = 1.0f;
+
+    private Canvas worldCanvas;
 
     // Colours
     private Color originalColour;
@@ -51,6 +54,7 @@ public class Enemy : MonoBehaviour
         originalColour = spriteRenderer.color;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         difficultyHandler = FindFirstObjectByType<DifficultyHandler>();
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
     }
 
     private void Start()
@@ -116,7 +120,6 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(ProjectileData data)
     {
-
         float finalDamage = data.damage;
 
         // If critical hit
@@ -130,6 +133,13 @@ public class Enemy : MonoBehaviour
             StartCoroutine(FlashColour(flashColour));
         }
 
+        // Floating damage text number
+        var damageText = Instantiate(damageTextPrefab, worldCanvas.transform);
+        Vector3 offset = new Vector3(0f, 1f, 0f);
+        damageText.transform.position = transform.position + offset;
+        damageText.GetComponent<FloatingDamageText>().SetValue(finalDamage);
+        damageText.GetComponent<FloatingDamageText>().SetCrit(data.isCritical);
+
         currentHealth -= finalDamage;
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
@@ -141,7 +151,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= Mathf.RoundToInt(damage);
+        // Floating damage text number
+        var damageText = Instantiate(damageTextPrefab, worldCanvas.transform);
+        Vector3 offset = new Vector3(0f, 1f, 0f);
+        damageText.transform.position = transform.position + offset;
+        damageText.GetComponent<FloatingDamageText>().SetValue(damage);
+
+        currentHealth -= damage;
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (currentHealth <= 0)

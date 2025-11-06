@@ -49,17 +49,19 @@ public class ExperiencePickup : MonoBehaviour
         }
 
         // Fly towards player
-        float speed = 0.5f;
-        float acceleration = 20f;
+        float speed = 0.2f;
+        float maxSpeed = 20f;
 
         while (Vector3.Distance(transform.position, player.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(
+            transform.position = Vector3.MoveTowards
+            (
                 transform.position,
                 player.position,
                 Time.deltaTime * speed
             );
-            speed += Time.deltaTime * acceleration;
+
+            speed = Mathf.Min(speed * 1.1f, maxSpeed);
             yield return null;
         }
 

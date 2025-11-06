@@ -242,6 +242,7 @@ MonoBehaviour:
   baseScore: 50
   deathSound: {fileID: 8300000, guid: 2381e6e4c693a2440b622da42290f75a, type: 3}
   experiencePrefab: {fileID: 3318238129176189141, guid: 36773ffd1959f284584039ba25e654d5, type: 3}
+  damageTextPrefab: {fileID: 7151505889103166550, guid: d58fb6590063a5f4194d2fcee196774d, type: 3}
 --- !u!50 &3694494197498073526
 Rigidbody2D:
   serializedVersion: 5
@@ -443,7 +444,7 @@ RectTransform:
   m_GameObject: {fileID: 8471886396113412480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1814475492435586040}
@@ -452,7 +453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.661}
+  m_AnchoredPosition: {x: 0, y: 66}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6959837052328829599
@@ -548,15 +549,15 @@ RectTransform:
   m_GameObject: {fileID: 8880268841649528167}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6777675359880924618}
   m_Father: {fileID: 6108295426928350359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.6}
   m_SizeDelta: {x: 914, y: 734}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1848970309666618500
