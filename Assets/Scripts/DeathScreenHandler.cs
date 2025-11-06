@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -12,8 +13,10 @@ public class DeathScreenHandler : MonoBehaviour
     [SerializeField] private PlayerStatsHandler playerStats;
     [SerializeField] private Canvas canvasUI;
     [Space(10)]
-    [SerializeField] private AudioClip deathMusic;
-    [SerializeField] private AudioClip gameMusic;
+    [SerializeField] private AudioClip deathSfx;
+    [SerializeField] private AudioClip correctSfx;
+    [SerializeField] private AudioClip wrongSfx;
+    [SerializeField] private AudioClip completeSfx;
     [SerializeField] private GameObject deathScreenPanel;
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI score;
@@ -54,7 +57,7 @@ public class DeathScreenHandler : MonoBehaviour
 
     private void HideDeathScreen()
     {
-        AudioManager.Instance.PlayMusic(gameMusic);
+        AudioManager.Instance.MusicSource.Play();
         deathScreenPanel.SetActive(false);
         deathScreenVisible = false;
         canvasUI.gameObject.SetActive(true);
@@ -66,7 +69,8 @@ public class DeathScreenHandler : MonoBehaviour
 
     public void ShowDeathScreen()
     {
-        AudioManager.Instance.PlayMusic(deathMusic);
+        AudioManager.Instance.MusicSource.Stop();
+        AudioManager.Instance.SFXSource.PlayOneShot(deathSfx);
         deathScreenPanel.SetActive(true);
         SetText();
         deathScreenVisible = true;
@@ -85,7 +89,7 @@ public class DeathScreenHandler : MonoBehaviour
     public void MenuButton()
     {
         SceneManager.LoadScene("TitleScene");
-        AudioManager.Instance.PlayMusic(gameMusic);
+        AudioManager.Instance.MusicSource.Play();
     }
 
     private void SetText()
@@ -107,6 +111,10 @@ public class DeathScreenHandler : MonoBehaviour
             {
                 string pressed = key.displayName.ToLower();
 
+                // Since player is using WASD to move let's not accept it as it will cause suspicion if pressed after death
+                if (pressed == "w" || pressed == "a" || pressed == "s" || pressed == "d")
+                    continue;
+
                 // Accept letters only
                 if (pressed.Length == 1 && char.IsLetter(pressed[0]))
                 {
@@ -116,31 +124,38 @@ public class DeathScreenHandler : MonoBehaviour
                     {
                         // Correct letter in sequence → add it
                         superSecretInput += pressed;
+                        AudioManager.Instance.SFXSource.PlayOneShot(correctSfx);
 
                         // Sequence complete?
                         if (superSecretInput == superSecretCheatCode)
                         {
-                            ActivateSuperSecretCheatCode();
-                            superSecretInput = "";     // reset after activation
+                            StartCoroutine(ActivateSuperSecretCheatCodeRoutine());
                         }
                     }
                     else
                     {
                         // WRONG LETTER → reset entire input
                         superSecretInput = "";
+                        AudioManager.Instance.SFXSource.PlayOneShot(wrongSfx);
                     }
                 }
                 else
                 {
                     // Non-letter keys reset the input
                     superSecretInput = "";
+                    AudioManager.Instance.SFXSource.PlayOneShot(wrongSfx);
                 }
             }
         }
     }
 
-    private void ActivateSuperSecretCheatCode()
+    private IEnumerator ActivateSuperSecretCheatCodeRoutine()
     {
+        AudioManager.Instance.SFXSource.PlayOneShot(completeSfx);
+        superSecretInput = "";
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
         playerStats.Heal(5);
         HideDeathScreen();
     }

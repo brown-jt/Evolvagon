@@ -1800,8 +1800,10 @@ MonoBehaviour:
   difficultyHandler: {fileID: 1046044124}
   playerStats: {fileID: 1708544506}
   canvasUI: {fileID: 1243944487}
-  deathMusic: {fileID: 8300000, guid: 2ce905f3efc889f44b2448984d1bae16, type: 3}
-  gameMusic: {fileID: 8300000, guid: c5776d38f0db49546ad560fd23544349, type: 3}
+  deathSfx: {fileID: 8300000, guid: b0bd44b0cc30310449ef8b90139490dd, type: 3}
+  correctSfx: {fileID: 8300000, guid: 529d2e4a70d3f5e4dac7c0be9ed37135, type: 3}
+  wrongSfx: {fileID: 8300000, guid: 3ed7fcec30fb83645a679cef762e426f, type: 3}
+  completeSfx: {fileID: 8300000, guid: 4a930e867c0f8214a96618bbdb44ded4, type: 3}
   deathScreenPanel: {fileID: 1280054910}
   time: {fileID: 1177845559}
   score: {fileID: 1753082351}

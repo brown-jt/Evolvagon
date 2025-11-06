@@ -6,6 +6,7 @@ public class ModifcationStation : MonoBehaviour
     [Header("References")]
     [SerializeField] private Slider progressSlider;
     [SerializeField] private FloatingText floatingText;
+    [SerializeField] private AudioClip sfx;
 
     [Header("Progress Settings")]
     [SerializeField] private float secondsToActivate = 5f;
@@ -55,6 +56,9 @@ public class ModifcationStation : MonoBehaviour
             if (progress >= 1f && !isActivated)
             {
                 modificationPanelController.ShowPanel();
+
+                // Audio clip
+                AudioManager.Instance.PlaySFX(sfx);
 
                 // Floating mod gained text
                 var modText = Instantiate(floatingText, worldCanvas.transform);
