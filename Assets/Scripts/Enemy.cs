@@ -66,11 +66,6 @@ public class Enemy : MonoBehaviour
             // Get direction from enemy to player
             Vector2 direction = (player.position - transform.position).normalized;
 
-            // Rotate sprite to face player
-            Vector2 lookDir = player.position - spriteTransform.position;
-            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-            spriteTransform.rotation = Quaternion.Euler(0, 0, angle+90);
-
             // Move enemy towards player
             transform.position += speed * Time.deltaTime * (Vector3)direction;
         }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2873780805730131393}
   - component: {fileID: 6081277257871224481}
+  - component: {fileID: 7728358560938793349}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -90,6 +91,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7728358560938793349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57549994448355104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600efd7ac45396248af610fa2758d6ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  sprites:
+  - {fileID: 3586201193802617874, guid: 0b5082d3835daac43a3c68b0ff20a8b2, type: 3}
+  - {fileID: 8164553106290282909, guid: 0b5082d3835daac43a3c68b0ff20a8b2, type: 3}
+  - {fileID: 2801689455990834327, guid: 0b5082d3835daac43a3c68b0ff20a8b2, type: 3}
+  - {fileID: 5554657174756978896, guid: 0b5082d3835daac43a3c68b0ff20a8b2, type: 3}
 --- !u!1 &82942926718630842
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +239,7 @@ MonoBehaviour:
   currentHealth: 0
   expReward: 10
   gemReward: 2
+  baseScore: 50
   deathSound: {fileID: 8300000, guid: 2381e6e4c693a2440b622da42290f75a, type: 3}
 --- !u!50 &3694494197498073526
 Rigidbody2D:
