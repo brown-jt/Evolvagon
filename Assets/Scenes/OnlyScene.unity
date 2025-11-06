@@ -585,7 +585,6 @@ GameObject:
   - component: {fileID: 124914752}
   - component: {fileID: 124914754}
   - component: {fileID: 124914753}
-  - component: {fileID: 124914755}
   m_Layer: 5
   m_Name: ModificationPanel
   m_TagString: Untagged
@@ -651,20 +650,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124914751}
   m_CullTransparentMesh: 1
---- !u!114 &124914755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124914751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cea317cdb4a8714f8bfdce15fa10e62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModificationPanelController
-  modificationPanel: {fileID: 124914751}
-  modificationHandler: {fileID: 651247236}
 --- !u!1 &149971572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,6 +2058,7 @@ MonoBehaviour:
   modificationOptionPrefab: {fileID: 6706892440491072523, guid: d56e269539c922148a44a28e460423d8, type: 3}
   optionsContainer: {fileID: 979829047}
   modificationIconSet: {fileID: 11400000, guid: 6d21a760b7e66ed4c8f4aad45ced41dd, type: 2}
+  manualGun: {fileID: 1926710083}
   squareStation: {fileID: 8878845699474749147, guid: 0375ca438b705b44586af4bb579197f4, type: 3}
   pentagonStation: {fileID: 2164320502872547403, guid: 14052ba49c2e8f24b8d485c29f869cfb, type: 3}
   hexagonStation: {fileID: 6393217273566930955, guid: 87825cbc289857640b1238acce34ff7c, type: 3}
@@ -6816,6 +6802,7 @@ GameObject:
   - component: {fileID: 1904726552}
   - component: {fileID: 1904726551}
   - component: {fileID: 1904726550}
+  - component: {fileID: 1904726553}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6906,6 +6893,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1904726553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904726548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cea317cdb4a8714f8bfdce15fa10e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModificationPanelController
+  modificationPanel: {fileID: 124914751}
+  modificationHandler: {fileID: 651247236}
 --- !u!1 &1910609848
 GameObject:
   m_ObjectHideFlags: 0
@@ -7092,6 +7093,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1926710083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 345941844547600600, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+  m_PrefabInstance: {fileID: 6591960237080990528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b6423e153fc2545a87e77519548da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManualGun
 --- !u!1 &1944317466
 GameObject:
   m_ObjectHideFlags: 0

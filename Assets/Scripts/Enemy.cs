@@ -124,7 +124,18 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= Mathf.RoundToInt(damage);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
     private void Die()
     {
         AudioManager.Instance.PlaySFX(deathSound);

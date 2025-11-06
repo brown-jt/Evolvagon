@@ -6,6 +6,7 @@ public class ModificationHandler : MonoBehaviour
     [SerializeField] private GameObject modificationOptionPrefab;
     [SerializeField] private Transform optionsContainer;
     [SerializeField] private ModificationIconSet modificationIconSet;
+    [SerializeField] private ManualGun manualGun;
 
     [Header("Stations")]
     [SerializeField] private GameObject squareStation;
@@ -63,42 +64,42 @@ public class ModificationHandler : MonoBehaviour
                 description = "Why shoot one ball directly in front of you... when you can shoot that plus an extra two either side? How cool is that!";
                 icon = modificationIconSet.tripleShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             case ModificationType.ExplosiveShot:
                 name = "Explosive Shot";
                 description = "The game isn't cool enough for you yet? This option causes you to gain a massive headache with screenshake and explosion!";
                 icon = modificationIconSet.explosiveShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             case ModificationType.PiercingShot:
                 name = "Piercing Shot";
                 description = "Even wonder why the ball you shoot disappears after it hits an enemy? Look no further! Now it can pass through one and hit two!";
                 icon = modificationIconSet.piercingShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             case ModificationType.BouncingShot:
                 name = "Bouncing Shot";
                 description = "Tired of the game bounds accidentally eating your ball? This modification coats your ball in rubber and allows it to bounce off walls!";
                 icon = modificationIconSet.bouncingShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             case ModificationType.RecoilShot:
                 name = "Recoil Shot";
                 description = "Tired of getting snuck up on from behind? Well.. do I have the solution for you.. Shoot in front of you and behind you.. AT THE SAME TIME!";
                 icon = modificationIconSet.recoilShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             case ModificationType.RicochetShot:
                 name = "Ricochet Shot";
                 description = "Those pesky irregular polygons gaining the upper hand? Teach your ball new tricks to automatically hop to a second one right after the first!";
                 icon = modificationIconSet.ricochetShotIcon;
                 return new ModificationData(name, description, icon,
-                    () => Debug.Log($"Apply {name} Modification"));
+                    () => manualGun.EnableModification(name));
 
             default:
                 return null;

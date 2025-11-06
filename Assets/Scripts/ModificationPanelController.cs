@@ -10,6 +10,11 @@ public class ModificationPanelController : MonoBehaviour
 
     public bool IsVisible => isVisible;
 
+    private void Start()
+    {
+        HidePanel();
+    }
+
     public void ShowPanel()
     {
         isVisible = true;

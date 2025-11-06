@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ManualGun : MonoBehaviour
@@ -14,6 +14,14 @@ public class ManualGun : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] private InputActionReference fireAction;
+
+    // Weapon modifiers
+    private bool tripleShotEnabled = false;
+    private bool explosiveShotEnabled = true;
+    private bool piercingShotEnabled = false;
+    private bool bouncingShotEnabled = false;
+    private bool recoilShotEnabled = false;
+    private bool ricochetShotEnabled = false;
 
     private float nextFireTime = 0f;
     private bool isFiring = false;
@@ -58,6 +66,34 @@ public class ManualGun : MonoBehaviour
         // Get direction toward AimCursor
         Vector2 direction = (aimCursor.position - transform.position).normalized;
 
+        SpawnProjectile(direction);
+        SpawnExtraProjectiles(direction);
+
+        // Play SFX
+        AudioManager.Instance.PlaySFX(gunSound);
+    }
+
+    public void EnableModification(string mod)
+    {
+        switch (mod)
+        {
+            case "Triple Shot":
+                tripleShotEnabled = true; break;
+            case "Explosive Shot":
+                explosiveShotEnabled = true; break;
+            case "Piercing Shot":
+                piercingShotEnabled = true; break;
+            case "Bouncing Shot":
+                bouncingShotEnabled = true; break;
+            case "Recoil Shot":
+                recoilShotEnabled = true; break;
+            case "Ricochet Shot":
+                ricochetShotEnabled = true; break;
+        }
+    }
+
+    private void SpawnProjectile(Vector2 direction)
+    {
         // Instantiate projectile
         GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
@@ -69,8 +105,13 @@ public class ManualGun : MonoBehaviour
             (
                 damage: playerStats.AttackDamage,
                 range: playerStats.AttackRange,
+                bulletDirection: direction,
                 isCritical: UnityEngine.Random.value < playerStats.CritChance,
-                critMultiplier: playerStats.CritMultiplier
+                critMultiplier: playerStats.CritMultiplier,
+                isRicochetShot: ricochetShotEnabled,
+                isBouncingShot: bouncingShotEnabled,
+                isExplosiveShot: explosiveShotEnabled,
+                isPiercingShot: piercingShotEnabled
             );
 
             projectile.projectileData = data;
@@ -80,8 +121,26 @@ public class ManualGun : MonoBehaviour
         Rigidbody2D rb = projectileObject.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * projectileSpeed;
+    }
 
-        // Play SFX
-        AudioManager.Instance.PlaySFX(gunSound);
+    private void SpawnExtraProjectiles(Vector2 aimDirection)
+    {
+        if (tripleShotEnabled)
+        {
+            float angleIncrease = 15f;    
+            
+            // Rotated +15
+            Vector2 rightDir = Quaternion.Euler(0, 0, angleIncrease) * aimDirection;
+            SpawnProjectile(rightDir);
+
+            // Rotated −15
+            Vector2 leftDir = Quaternion.Euler(0, 0, -angleIncrease) * aimDirection;
+            SpawnProjectile(leftDir);
+        }
+
+        if (recoilShotEnabled)
+        {
+            SpawnProjectile(-aimDirection);
+        }
     }
 }

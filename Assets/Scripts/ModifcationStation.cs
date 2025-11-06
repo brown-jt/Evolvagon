@@ -14,6 +14,7 @@ public class ModifcationStation : MonoBehaviour
     private float activeSeconds = 0f;
     private bool playerInside = false;
     private bool activatable = false;
+    private bool isActivated = false;
 
     private PlayerStatsHandler playerStats;
     private ModificationPanelController modificationPanelController;
@@ -27,9 +28,6 @@ public class ModifcationStation : MonoBehaviour
         }
         playerStats = FindFirstObjectByType<PlayerStatsHandler>();
         modificationPanelController = FindFirstObjectByType<ModificationPanelController>();
-        
-        if (modificationPanelController != null )
-            modificationPanelController.HidePanel();
     }
 
     private void Update()
@@ -50,10 +48,15 @@ public class ModifcationStation : MonoBehaviour
             if (progressSlider != null)
                 progressSlider.value = progress;
 
-            if (progress >= 1f && !modificationPanelController.IsVisible)
+            if (progress >= 1f && !isActivated)
             {
                 modificationPanelController.ShowPanel();
+                isActivated = true;
             }
+
+            // Clear up after activation
+            if (isActivated)
+                Destroy(gameObject);
         }
     }
 

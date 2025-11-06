@@ -70,6 +70,7 @@ public class OrbitWeapon : MonoBehaviour
                 damage: 1f,
                 range: 1f,
                 isCritical: Random.value < 0.2f,
+                bulletDirection: direction,
                 critMultiplier: 2f
             );
 
