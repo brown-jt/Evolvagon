@@ -26,8 +26,14 @@ public class Enemy : MonoBehaviour
     private DifficultyHandler difficultyHandler;
     private Rigidbody2D rb;
     private Transform spriteTransform;
+    private SpriteRenderer spriteRenderer;
     private bool isKnockedBack = false;
     private float difficultyScale = 1.0f;
+
+    // Colours
+    private Color originalColour;
+    private Color flashColour = Color.white;
+    private Color flashCritColour = Color.red;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
@@ -37,7 +43,9 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteTransform = GetComponentInChildren<SpriteRenderer>().transform;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteTransform = spriteRenderer.transform;
+        originalColour = spriteRenderer.color;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         difficultyHandler = FindFirstObjectByType<DifficultyHandler>();
     }
@@ -110,11 +118,19 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(ProjectileData data)
     {
+
         float finalDamage = data.damage;
 
         // If critical hit
         if (data.isCritical)
+        {
             finalDamage = finalDamage * data.critMultiplier;
+            StartCoroutine(FlashColour(flashCritColour));
+        }
+        else
+        {
+            StartCoroutine(FlashColour(flashColour));
+        }
 
         currentHealth -= finalDamage;
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
@@ -191,5 +207,12 @@ public class Enemy : MonoBehaviour
         // Stop knockback and resume normal movement
         rb.linearVelocity = Vector2.zero;
         isKnockedBack = false;
+    }
+
+    IEnumerator FlashColour(Color col)
+    {
+        spriteRenderer.color = col;
+        yield return new WaitForSeconds(0.05f);
+        spriteRenderer.color = originalColour;
     }
 }

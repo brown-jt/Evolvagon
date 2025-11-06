@@ -25,6 +25,8 @@ public class Projectile : MonoBehaviour
     {
         if (!projectileData.isBouncingShot)
             destroyCoroutine = StartCoroutine(DestroyAfterTime(projectileData.range));
+        else
+            destroyCoroutine = StartCoroutine(DestroyAfterTime(projectileData.range*10));
     }
 
     void OnTriggerEnter2D(Collider2D other)

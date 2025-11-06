@@ -82,7 +82,7 @@ public class ModificationHandler : MonoBehaviour
 
             case ModificationType.BouncingShot:
                 name = "Bouncing Shot";
-                description = "Tired of the game eating your ball? This modification coats your ball in rubber and allows it to bounce off walls and fly until it hits an enemy!";
+                description = "Tired of the game eating your ball? This modification coats your ball in rubber and allows it to bounce off walls and fly much longer!";
                 icon = modificationIconSet.bouncingShotIcon;
                 return new ModificationData(name, description, icon,
                     () => manualGun.EnableModification(name));
