@@ -154,7 +154,7 @@ public class DeathScreenHandler : MonoBehaviour
         AudioManager.Instance.SFXSource.PlayOneShot(completeSfx);
         superSecretInput = "";
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.75f);
 
         playerStats.Heal(5);
         HideDeathScreen();
