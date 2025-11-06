@@ -22,6 +22,7 @@ public class ManualGun : MonoBehaviour
     private bool bouncingShotEnabled = false;
     private bool recoilShotEnabled = false;
     private bool ricochetShotEnabled = false;
+    private Color projectileColour = Color.white;
 
     private float nextFireTime = 0f;
     private bool isFiring = false;
@@ -80,15 +81,19 @@ public class ManualGun : MonoBehaviour
             case "Triple Shot":
                 tripleShotEnabled = true; break;
             case "Explosive Shot":
-                explosiveShotEnabled = true; break;
+                explosiveShotEnabled = true;
+                break;
             case "Piercing Shot":
                 piercingShotEnabled = true; break;
             case "Bouncing Shot":
-                bouncingShotEnabled = true; break;
+                bouncingShotEnabled = true;
+                break;
             case "Recoil Shot":
-                recoilShotEnabled = true; break;
+                recoilShotEnabled = true;
+                break;
             case "Ricochet Shot":
-                ricochetShotEnabled = true; break;
+                ricochetShotEnabled = true;
+                break;
         }
     }
 
@@ -138,6 +143,9 @@ public class ManualGun : MonoBehaviour
             projectile.projectileData = data;
         }
 
+        // Apply colour
+        projectileObject.GetComponentInChildren<SpriteRenderer>().color = GetProjectileColour();
+
         // Apply velocity
         Rigidbody2D rb = projectileObject.GetComponent<Rigidbody2D>();
         if (rb)
@@ -163,5 +171,28 @@ public class ManualGun : MonoBehaviour
         {
             SpawnProjectile(-aimDirection);
         }
+    }
+
+    private Color GetProjectileColour()
+    {
+        if (explosiveShotEnabled)
+            return Color.red;
+
+        if (piercingShotEnabled && bouncingShotEnabled)
+            return new Color(100, 150, 0);
+
+        if (ricochetShotEnabled && bouncingShotEnabled)
+            return new Color(0, 255, 255);
+
+        if (piercingShotEnabled)
+            return Color.yellow;
+
+        if (bouncingShotEnabled)
+            return Color.blue;
+
+        if (ricochetShotEnabled)
+            return Color.green;
+      
+        return Color.white;
     }
 }
