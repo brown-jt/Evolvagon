@@ -110,7 +110,6 @@ public class Enemy : MonoBehaviour
     {
         speed = speed * difficultyScale;
         maxHealth = maxHealth * difficultyScale;
-        gemReward = Mathf.RoundToInt(gemReward * difficultyScale);
         baseScore = Mathf.RoundToInt(baseScore * difficultyScale);
 
         // Only increase EXP gain during normal levels - Stop when mega scaling
@@ -176,8 +175,8 @@ public class Enemy : MonoBehaviour
         PlayerStatsHandler playerStats = player.GetComponent<PlayerStatsHandler>();
         if (playerStats != null)
         {
-            // 10% chance to add gems
-            if (UnityEngine.Random.value < 0.1f) 
+            // 25% chance to add gems
+            if (UnityEngine.Random.value < 0.25f) 
                 playerStats.AddGems(gemReward);
         }
         GameManager.Instance.AddScore(baseScore);

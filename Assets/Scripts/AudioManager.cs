@@ -3,24 +3,44 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio Files")]
-    [SerializeField] private AudioSource BGMusicSource;
-    [SerializeField] private AudioSource SFXSource;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+
+    public AudioSource MusicSource => musicSource;
+    public AudioSource SFXSource => sfxSource;
 
     // Singleton
     public static AudioManager Instance;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        SFXSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip);
     }
 
     public void SetBGMusicPitch(float pitch)
     {
-        BGMusicSource.pitch = pitch;
+        musicSource.pitch = pitch;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
     }
 }

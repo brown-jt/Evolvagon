@@ -41,6 +41,7 @@ public class PlayerStatsHandler : MonoBehaviour
     public event Action<int> OnGemsChanged; // Current Gems
     public event Action<string, float> OnFloatStatChanged;
     public event Action<string, int> OnIntStatChanged;
+    public event Action OnPlayerDeath;
 
     private void Start()
     {
@@ -56,8 +57,7 @@ public class PlayerStatsHandler : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Handle player death somewhere else outside of player stats (e.g., respawn, game over)
-            Debug.Log("Player has died.");
+            HandleDeath();
         }
     }
 
@@ -86,11 +86,16 @@ public class PlayerStatsHandler : MonoBehaviour
         {
             // Trigger some UI feedback for insufficient funds
             // For now, just log a warning
-            Debug.LogWarning("Not enough gold!");
+            Debug.LogWarning("Not enough gems!");
             return;
         }
         gems -= amount;
         OnGemsChanged?.Invoke(gems);
+    }
+
+    private void HandleDeath()
+    {
+        OnPlayerDeath?.Invoke();
     }
 
     public void UpgradeStat(string stat, float amount)
