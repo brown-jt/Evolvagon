@@ -8040,7 +8040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: baseExperienceToNextLevel
-      value: 40
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2925118873830279520, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: m_IsActive

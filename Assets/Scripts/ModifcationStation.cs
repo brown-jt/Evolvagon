@@ -27,6 +27,9 @@ public class ModifcationStation : MonoBehaviour
         }
         playerStats = FindFirstObjectByType<PlayerStatsHandler>();
         modificationPanelController = FindFirstObjectByType<ModificationPanelController>();
+        
+        if (modificationPanelController != null )
+            modificationPanelController.HidePanel();
     }
 
     private void Update()
@@ -47,7 +50,7 @@ public class ModifcationStation : MonoBehaviour
             if (progressSlider != null)
                 progressSlider.value = progress;
 
-            if (progress >= 1f)
+            if (progress >= 1f && !modificationPanelController.IsVisible)
             {
                 modificationPanelController.ShowPanel();
             }

@@ -6,13 +6,13 @@ public class ModificationPanelController : MonoBehaviour
     [SerializeField] private GameObject modificationPanel;
     [SerializeField] private ModificationHandler modificationHandler;
 
-    private void Start()
-    {
-        modificationPanel.SetActive(false);
-    }
+    private bool isVisible = false;
+
+    public bool IsVisible => isVisible;
 
     public void ShowPanel()
     {
+        isVisible = true;
         modificationPanel.SetActive(true);
         modificationHandler.GenerateModificationOptions();
 
@@ -22,6 +22,7 @@ public class ModificationPanelController : MonoBehaviour
     }
     public void HidePanel()
     {
+        isVisible = false;
         modificationPanel.SetActive(false);
 
         Time.timeScale = 1f;
