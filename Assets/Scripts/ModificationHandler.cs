@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ModificationHandler : MonoBehaviour
@@ -32,23 +33,22 @@ public class ModificationHandler : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        // Get list of all possible mods
+        var allMods = System.Enum.GetValues(typeof(ModificationType)).Cast<ModificationType>().ToList();
+
+        // Remove mods I already have on my manualGun
+        allMods.RemoveAll(mod => manualGun.HasModification(mod));
+
+        // Shuffle the list to randomize when we pick X amount from it later
+        allMods = allMods.OrderBy(x => Random.value).ToList();
+
         // Generate new ones now
         for (int i = 0; i < numberOfOptions; i++)
         {
-            ModificationData randomModification = GetRandomModification();
+            ModificationData mod = BuildModificationData(allMods[i]);
             var option = Instantiate(modificationOptionPrefab, optionsContainer);
-            option.GetComponent<ModificationOptionUI>().Setup(randomModification);
+            option.GetComponent<ModificationOptionUI>().Setup(mod);
         }
-    }
-
-    private ModificationData GetRandomModification()
-    {
-        // Secondly let's get a random upgrade type
-        // TODO - Implement a feature where you cannot get the same option shown twice
-        ModificationType type = (ModificationType)Random.Range(0, System.Enum.GetValues(typeof(ModificationType)).Length);
-
-        // Build the complete UpgradeData structure
-        return BuildModificationData(type);
     }
 
     private ModificationData BuildModificationData(ModificationType type)

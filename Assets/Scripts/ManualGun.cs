@@ -16,8 +16,8 @@ public class ManualGun : MonoBehaviour
     [SerializeField] private InputActionReference fireAction;
 
     // Weapon modifiers
-    private bool tripleShotEnabled = true;
-    private bool explosiveShotEnabled = true;
+    private bool tripleShotEnabled = false;
+    private bool explosiveShotEnabled = false;
     private bool piercingShotEnabled = false;
     private bool bouncingShotEnabled = false;
     private bool recoilShotEnabled = false;
@@ -89,6 +89,27 @@ public class ManualGun : MonoBehaviour
                 recoilShotEnabled = true; break;
             case "Ricochet Shot":
                 ricochetShotEnabled = true; break;
+        }
+    }
+
+    public bool HasModification(ModificationType type)
+    {
+        switch (type)
+        {
+            case ModificationType.TripleShot:
+                return tripleShotEnabled;
+            case ModificationType.ExplosiveShot:
+                return explosiveShotEnabled;
+            case ModificationType.PiercingShot:
+                return piercingShotEnabled;
+            case ModificationType.BouncingShot:
+                return bouncingShotEnabled;
+            case ModificationType.RecoilShot:
+                return recoilShotEnabled;
+            case ModificationType.RicochetShot:
+                return ricochetShotEnabled;
+            default:
+                return false;
         }
     }
 
