@@ -478,6 +478,8 @@ MonoBehaviour:
   gems: 0
   baseExperienceToNextLevel: 100
   experienceGrowthRate: 2
+  levelUpClip: {fileID: 8300000, guid: e84d1399b7e7e91449357b2db2a90776, type: 3}
+  levelUpText: {fileID: 1777712861963375292, guid: a6ab1129eee00144ab6c3589259bad98, type: 3}
 --- !u!1 &4834092413274742982
 GameObject:
   m_ObjectHideFlags: 0

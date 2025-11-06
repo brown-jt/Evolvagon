@@ -29,6 +29,13 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.resource = clip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
     public void SetBGMusicPitch(float pitch)
     {
         musicSource.pitch = pitch;

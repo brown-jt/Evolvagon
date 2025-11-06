@@ -22,6 +22,10 @@ public class PlayerStatsHandler : MonoBehaviour
     [SerializeField] private float baseExperienceToNextLevel = 50f;
     [SerializeField] private float experienceGrowthRate = 1.1f;
 
+    [Header("Level Up Settings")]
+    [SerializeField] private AudioClip levelUpClip;
+    [SerializeField] private FloatingLevelText levelUpText;
+
     // Public getters for accessing stats
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
@@ -43,10 +47,13 @@ public class PlayerStatsHandler : MonoBehaviour
     public event Action<string, int> OnIntStatChanged;
     public event Action OnPlayerDeath;
 
+    private Canvas worldCanvas;
+
     private void Start()
     {
         currentHealth = maxHealth;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
     }
 
     // Core methods for managing player stats
@@ -140,8 +147,14 @@ public class PlayerStatsHandler : MonoBehaviour
     private void HandleLevelUp()
     {
         level++;
+        AudioManager.Instance.PlaySFX(levelUpClip);        
+        
+        // Floating level up text
+        var levelUp = Instantiate(levelUpText, worldCanvas.transform);
+        Vector3 offset = new Vector3(0f, 1f, 0f);
+        levelUp.transform.position = transform.position + offset;
+
         OnLevelChanged?.Invoke(level);
-        Debug.Log($"Player leveled up to level {level}!");
     }
 
     public float GetExperiencePercentage()

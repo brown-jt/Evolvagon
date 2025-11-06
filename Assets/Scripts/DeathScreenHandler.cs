@@ -1,6 +1,8 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class DeathScreenHandler : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class DeathScreenHandler : MonoBehaviour
     [SerializeField] private PlayerStatsHandler playerStats;
     [SerializeField] private Canvas canvasUI;
     [Space(10)]
+    [SerializeField] private AudioClip deathMusic;
+    [SerializeField] private AudioClip gameMusic;
     [SerializeField] private GameObject deathScreenPanel;
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI score;
@@ -50,6 +54,7 @@ public class DeathScreenHandler : MonoBehaviour
 
     private void HideDeathScreen()
     {
+        AudioManager.Instance.PlayMusic(gameMusic);
         deathScreenPanel.SetActive(false);
         deathScreenVisible = false;
         canvasUI.gameObject.SetActive(true);
@@ -61,6 +66,7 @@ public class DeathScreenHandler : MonoBehaviour
 
     public void ShowDeathScreen()
     {
+        AudioManager.Instance.PlayMusic(deathMusic);
         deathScreenPanel.SetActive(true);
         SetText();
         deathScreenVisible = true;
@@ -71,6 +77,17 @@ public class DeathScreenHandler : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void RetryButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("TitleScene");
+        AudioManager.Instance.PlayMusic(gameMusic);
+    }
+
     private void SetText()
     {
         time.text = baseTimeText + FormatTime(difficultyHandler.ElapsedTime);
@@ -79,13 +96,53 @@ public class DeathScreenHandler : MonoBehaviour
 
     private void CheckForSuperSecretCheatCode()
     {
-        // TODO - New Unity input system check to see if superSecretCheatCode was typed successfully
-        // Reset typed word on wrong key input
+        if (keyboard == null) return;
+
+        foreach (KeyControl key in keyboard.allKeys)
+        {
+            if (key == null)
+                continue;
+
+            if (key.wasPressedThisFrame)
+            {
+                string pressed = key.displayName.ToLower();
+
+                // Accept letters only
+                if (pressed.Length == 1 && char.IsLetter(pressed[0]))
+                {
+                    char expectedChar = superSecretCheatCode[superSecretInput.Length];
+
+                    if (pressed[0] == expectedChar)
+                    {
+                        // Correct letter in sequence → add it
+                        superSecretInput += pressed;
+
+                        // Sequence complete?
+                        if (superSecretInput == superSecretCheatCode)
+                        {
+                            ActivateSuperSecretCheatCode();
+                            superSecretInput = "";     // reset after activation
+                        }
+                    }
+                    else
+                    {
+                        // WRONG LETTER → reset entire input
+                        superSecretInput = "";
+                    }
+                }
+                else
+                {
+                    // Non-letter keys reset the input
+                    superSecretInput = "";
+                }
+            }
+        }
     }
 
     private void ActivateSuperSecretCheatCode()
     {
-        Debug.Log("TODO - REVIVE PLAYER");
+        playerStats.Heal(5);
+        HideDeathScreen();
     }
 
     private string FormatTime(float timeInSeconds)

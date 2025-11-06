@@ -17,7 +17,8 @@ public class RefreshButton : MonoBehaviour
     private void Start()
     {
         requiredValue = startingValue;
-        required.text = requiredValue.ToString();
+        if (required)
+            required.text = requiredValue.ToString();
     }
 
     public void RefreshOptions()

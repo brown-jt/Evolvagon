@@ -772,7 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerStats: {fileID: 1708544506}
   upgradeManager: {fileID: 2132541536}
-  modificationHandler: {fileID: 0}
+  modificationHandler: {fileID: 651247236}
   required: {fileID: 504755992}
 --- !u!4 &85022091 stripped
 Transform:
@@ -1800,6 +1800,8 @@ MonoBehaviour:
   difficultyHandler: {fileID: 1046044124}
   playerStats: {fileID: 1708544506}
   canvasUI: {fileID: 1243944487}
+  deathMusic: {fileID: 8300000, guid: 2ce905f3efc889f44b2448984d1bae16, type: 3}
+  gameMusic: {fileID: 8300000, guid: c5776d38f0db49546ad560fd23544349, type: 3}
   deathScreenPanel: {fileID: 1280054910}
   time: {fileID: 1177845559}
   score: {fileID: 1753082351}
@@ -3408,7 +3410,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 740261081}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 384891875}
+        m_TargetAssemblyTypeName: DeathScreenHandler, Assembly-CSharp
+        m_MethodName: MenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &740261081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3864,7 +3878,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 779939654}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 384891875}
+        m_TargetAssemblyTypeName: DeathScreenHandler, Assembly-CSharp
+        m_MethodName: RetryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &779939654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7152,7 +7178,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 900}
+  m_SizeDelta: {x: 900, y: 1100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1425987398
 MonoBehaviour:
@@ -10009,7 +10035,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 1100}
+  m_SizeDelta: {x: 900, y: 1150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1998951867
 MonoBehaviour:
@@ -10100,8 +10126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 450, y: -33.33333}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2073787599
 MonoBehaviour:
@@ -10116,7 +10142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 0
 --- !u!114 &2073787600
 MonoBehaviour:
   m_ObjectHideFlags: 0
