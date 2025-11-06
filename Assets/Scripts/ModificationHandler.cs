@@ -61,7 +61,7 @@ public class ModificationHandler : MonoBehaviour
         {
             case ModificationType.TripleShot:
                 name = "Triple Shot";
-                description = "Why shoot one ball directly in front of you... when you can shoot that plus an extra two either side? How cool is that!";
+                description = "Do you wish you had more balls? This mod ensures that you just don't shoot one, or even two, you shoot three! How cool is that?";
                 icon = modificationIconSet.tripleShotIcon;
                 return new ModificationData(name, description, icon,
                     () => manualGun.EnableModification(name));
@@ -82,7 +82,7 @@ public class ModificationHandler : MonoBehaviour
 
             case ModificationType.BouncingShot:
                 name = "Bouncing Shot";
-                description = "Tired of the game bounds accidentally eating your ball? This modification coats your ball in rubber and allows it to bounce off walls!";
+                description = "Tired of the game eating your ball? This modification coats your ball in rubber and allows it to bounce off walls and fly until it hits an enemy!";
                 icon = modificationIconSet.bouncingShotIcon;
                 return new ModificationData(name, description, icon,
                     () => manualGun.EnableModification(name));

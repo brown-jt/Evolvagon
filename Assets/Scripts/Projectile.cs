@@ -23,7 +23,8 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        destroyCoroutine = StartCoroutine(DestroyAfterTime(projectileData.range));
+        if (!projectileData.isBouncingShot)
+            destroyCoroutine = StartCoroutine(DestroyAfterTime(projectileData.range));
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -79,9 +80,6 @@ public class Projectile : MonoBehaviour
 
     void BounceBullet(Collider2D gameBounds)
     {
-        // Reset bullet lifetime to allow for meaningfulness
-        ChangeDestructionTime(projectileData.range);
-
         Vector2 dir = projectileData.bulletDirection;
         Bounds b = gameBounds.bounds;
 
