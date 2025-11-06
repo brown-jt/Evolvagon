@@ -51,6 +51,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 76e539a44673115479e53212d430b184, type: 3}
   - {fileID: 8300000, guid: d29fcea7a7392b54a9ed77df930ecc80, type: 3}
   - {fileID: 8300000, guid: 77a99998614e9cd40af89a0dff31fe0b, type: 3}
+  cameraShakeDurationMin: 0.3
+  cameraShakeDurationMax: 0.4
+  cameraShakeMagnitudeMin: 0.3
+  cameraShakeMagnitudeMax: 0.5
   frames:
   - {fileID: -6418611729921034620, guid: 271dceaba2cf172458ede52b8062f330, type: 3}
   - {fileID: -9096176707460220086, guid: 271dceaba2cf172458ede52b8062f330, type: 3}
@@ -61,7 +65,7 @@ MonoBehaviour:
   - {fileID: 4130620181243477716, guid: 271dceaba2cf172458ede52b8062f330, type: 3}
   - {fileID: -1307452200017250653, guid: 271dceaba2cf172458ede52b8062f330, type: 3}
   - {fileID: 1961297060694635586, guid: 271dceaba2cf172458ede52b8062f330, type: 3}
-  animationDuration: 1
+  animationDuration: 0.6
   spriteRenderer: {fileID: 7027517465514066268}
 --- !u!58 &7180000055069178228
 CircleCollider2D:

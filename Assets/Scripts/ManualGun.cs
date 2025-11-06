@@ -16,7 +16,7 @@ public class ManualGun : MonoBehaviour
     [SerializeField] private InputActionReference fireAction;
 
     // Weapon modifiers
-    private bool tripleShotEnabled = false;
+    private bool tripleShotEnabled = true;
     private bool explosiveShotEnabled = true;
     private bool piercingShotEnabled = false;
     private bool bouncingShotEnabled = false;

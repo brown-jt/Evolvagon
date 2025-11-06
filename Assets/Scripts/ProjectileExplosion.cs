@@ -5,6 +5,11 @@ public class ProjectileExplosion : MonoBehaviour
     [Header("Explosion Settings")]
     [SerializeField] private float explosionRadius = 1f;
     [SerializeField] private AudioClip[] explosionSFX;
+    [SerializeField] private float cameraShakeDurationMin = 0.1f;
+    [SerializeField] private float cameraShakeDurationMax = 0.3f;
+    [SerializeField] private float cameraShakeMagnitudeMin = 0.1f;
+    [SerializeField] private float cameraShakeMagnitudeMax = 0.3f;
+
 
     [Header("Animation Settings")]
     [SerializeField] private Sprite[] frames;
@@ -48,13 +53,23 @@ public class ProjectileExplosion : MonoBehaviour
 
     private void CreateExplosion()
     {
+        // Play SFX
         if (explosionSFX.Length > 0)
         {
             int randIndx = Random.Range(0, explosionSFX.Length);
             AudioManager.Instance.PlaySFX(explosionSFX[randIndx]);
         }
 
+        // Cause screen shake
+        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+        if (cameraShake != null)
+        {
+            float shakeDuration = Random.Range(cameraShakeDurationMin, cameraShakeDurationMax);
+            float shakeMagnitude = Random.Range(cameraShakeMagnitudeMin, cameraShakeMagnitudeMax);
+            cameraShake.Shake(shakeDuration, shakeMagnitude);
+        }
 
+        // Handle damage
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hit in hits)
         {

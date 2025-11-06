@@ -10,6 +10,9 @@ public class CameraClamp : MonoBehaviour
     private float camHeight;
     private float camWidth;
 
+    // Allow for shake
+    private Vector3 shakeOffset = Vector3.zero;
+
     void Awake()
     {
         cam = GetComponent<Camera>();
@@ -29,8 +32,8 @@ public class CameraClamp : MonoBehaviour
         float minY = bounds.min.y + camHeight / 2f;
         float maxY = bounds.max.y - camHeight / 2f;
 
-        // Desired camera position (following the player)
-        Vector3 desiredPos = new Vector3(target.position.x, target.position.y, transform.position.z);
+        // Desired camera position (following the player) accounting for shake
+        Vector3 desiredPos = new Vector3(target.position.x + shakeOffset.x, target.position.y + shakeOffset.y, transform.position.z);
 
         // Clamp camera position within bounds
         if (desiredPos.x < minX) desiredPos.x = minX;
@@ -41,4 +44,7 @@ public class CameraClamp : MonoBehaviour
         // Move the camera to the position
         transform.position = desiredPos;
     }
+
+    public void SetShake(Vector2 offset) => shakeOffset = offset;
+    public void ClearShake() => shakeOffset = Vector2.zero;
 }
