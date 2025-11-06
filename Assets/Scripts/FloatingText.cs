@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class FloatingLevelText : MonoBehaviour
+public class FloatingText : MonoBehaviour
 {
     [Header("Text Settings")]
     [SerializeField] private float moveSpeed = 1f;
@@ -9,7 +9,7 @@ public class FloatingLevelText : MonoBehaviour
     [SerializeField] private Vector2 randomDirectionRange = new Vector2(-1f, 1f);
 
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI levelUp;
+    [SerializeField] private TextMeshProUGUI text;
 
     private float timer;
     private Color originalColour = Color.cyan;
@@ -17,7 +17,7 @@ public class FloatingLevelText : MonoBehaviour
 
     private void Start()
     {
-        levelUp = GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshProUGUI>();
         timer = lifetime;
 
         // Random floating direction
@@ -38,9 +38,14 @@ public class FloatingLevelText : MonoBehaviour
         timer -= Time.deltaTime;
         float t = timer / lifetime;
 
-        levelUp.color = new Color(originalColour.r, originalColour.g, originalColour.b, t);
+        text.color = new Color(originalColour.r, originalColour.g, originalColour.b, t);
 
         if (timer <= 0)
             Destroy(gameObject);
+    }
+
+    public void SetText(string newText)
+    {
+        text.text = newText;
     }
 }

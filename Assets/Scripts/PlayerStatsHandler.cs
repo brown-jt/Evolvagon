@@ -24,7 +24,7 @@ public class PlayerStatsHandler : MonoBehaviour
 
     [Header("Level Up Settings")]
     [SerializeField] private AudioClip levelUpClip;
-    [SerializeField] private FloatingLevelText levelUpText;
+    [SerializeField] private FloatingText levelUpText;
 
     // Public getters for accessing stats
     public int CurrentHealth => currentHealth;
@@ -150,9 +150,10 @@ public class PlayerStatsHandler : MonoBehaviour
         AudioManager.Instance.PlaySFX(levelUpClip);        
         
         // Floating level up text
-        var levelUp = Instantiate(levelUpText, worldCanvas.transform);
+        var floatingText = Instantiate(levelUpText, worldCanvas.transform);
         Vector3 offset = new Vector3(0f, 1f, 0f);
-        levelUp.transform.position = transform.position + offset;
+        floatingText.SetText("LEVEL UP!");
+        floatingText.transform.position = transform.position + offset;
 
         OnLevelChanged?.Invoke(level);
     }

@@ -5,6 +5,7 @@ public class ModifcationStation : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Slider progressSlider;
+    [SerializeField] private FloatingText floatingText;
 
     [Header("Progress Settings")]
     [SerializeField] private float secondsToActivate = 5f;
@@ -19,6 +20,8 @@ public class ModifcationStation : MonoBehaviour
     private PlayerStatsHandler playerStats;
     private ModificationPanelController modificationPanelController;
 
+    private Canvas worldCanvas;
+
     private void Start()
     {
         if (progressSlider != null)
@@ -28,6 +31,7 @@ public class ModifcationStation : MonoBehaviour
         }
         playerStats = FindFirstObjectByType<PlayerStatsHandler>();
         modificationPanelController = FindFirstObjectByType<ModificationPanelController>();
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
     }
 
     private void Update()
@@ -51,6 +55,13 @@ public class ModifcationStation : MonoBehaviour
             if (progress >= 1f && !isActivated)
             {
                 modificationPanelController.ShowPanel();
+
+                // Floating mod gained text
+                var modText = Instantiate(floatingText, worldCanvas.transform);
+                Vector3 offset = new Vector3(0f, 1f, 0f);
+                modText.SetText("MOD GAINED!");
+                modText.transform.position = transform.position + offset;
+
                 isActivated = true;
             }
 
