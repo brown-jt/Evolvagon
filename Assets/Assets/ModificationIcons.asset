@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0920520fa3aa39f4ba16cb45be827da3, type: 3}
+  m_Name: ModificationIcons
+  m_EditorClassIdentifier: Assembly-CSharp::ModificationIconSet
+  tripleShotIcon: {fileID: -8196958359197543634, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  explosiveShotIcon: {fileID: 9052668758673309760, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  piercingShotIcon: {fileID: 8905692395314524455, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  bouncingShotIcon: {fileID: -1883987932257714611, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  recoilShotIcon: {fileID: 2710410759474273871, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  ricochetShotIcon: {fileID: 6459951440308727900, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}

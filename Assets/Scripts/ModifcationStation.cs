@@ -8,9 +8,15 @@ public class ModifcationStation : MonoBehaviour
 
     [Header("Progress Settings")]
     [SerializeField] private float secondsToActivate = 5f;
+    [SerializeField] private int minLevel = 5;
+    [SerializeField] private int maxLevel = 6;
 
     private float activeSeconds = 0f;
     private bool playerInside = false;
+    private bool activatable = false;
+
+    private PlayerStatsHandler playerStats;
+    private ModificationPanelController modificationPanelController;
 
     private void Start()
     {
@@ -19,17 +25,22 @@ public class ModifcationStation : MonoBehaviour
             progressSlider.value = 0;
             progressSlider.gameObject.SetActive(false);
         }
+        playerStats = FindFirstObjectByType<PlayerStatsHandler>();
+        modificationPanelController = FindFirstObjectByType<ModificationPanelController>();
     }
 
     private void Update()
     {
-        HandleProgress();
+        CheckIfCorrectLevel();
     }
 
     private void HandleProgress()
     {
-        if (playerInside)
+        if (playerInside && activatable)
         {
+            // If not visible already let's make it visible
+            progressSlider.gameObject.SetActive(true);
+
             activeSeconds += Time.deltaTime;
             float progress = Mathf.Clamp01(activeSeconds / secondsToActivate);
 
@@ -38,9 +49,27 @@ public class ModifcationStation : MonoBehaviour
 
             if (progress >= 1f)
             {
-                Debug.Log("APPLY MODIFICATION UPGRADE SCREEN");
+                modificationPanelController.ShowPanel();
             }
         }
+    }
+
+    private void CheckIfCorrectLevel()
+    {
+        if (playerStats.Level < minLevel)
+        {
+            activatable = false;
+        }
+        if (playerStats.Level >= minLevel && playerStats.Level <= maxLevel) 
+        {
+            activatable = true;
+        }
+        if (playerStats.Level > maxLevel)
+        {
+            Destroy(gameObject);
+        }
+
+        HandleProgress();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -48,8 +77,6 @@ public class ModifcationStation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInside = true;
-            Debug.Log("Player Inside");
-            progressSlider.gameObject.SetActive(true);
         }
     }
 
@@ -58,7 +85,6 @@ public class ModifcationStation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInside = false;
-            Debug.Log("Player Left");
         }
     }
 }

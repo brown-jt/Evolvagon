@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 3045152659787855634}
   - component: {fileID: 2854347073102668444}
   m_Layer: 0
-  m_Name: ModificationStation
+  m_Name: ModificationStation4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,7 +459,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   progressSlider: {fileID: 7219085768898767563}
+  playerStats: {fileID: 0}
   secondsToActivate: 5
+  minLevel: 5
+  maxLevel: 6
 --- !u!1 &9110806149456157428
 GameObject:
   m_ObjectHideFlags: 0
