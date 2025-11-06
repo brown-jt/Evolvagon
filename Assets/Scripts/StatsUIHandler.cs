@@ -37,38 +37,44 @@ public class StatsUIHandler : MonoBehaviour
 
     private void UpdateStat(string stat, float val)
     {
+        bool isWhole = Mathf.Approximately(val % 1f, 0f);
+        string formatted = isWhole ? ((int)val).ToString() : val.ToString("F2");
+
         switch (stat)
         {
             case "Movement Speed":
-                moveSpeed.text = val.ToString("F2"); break;
+                moveSpeed.text = formatted; break;
             case "Damage":
-                damage.text = val.ToString("F2"); break;
+                damage.text = formatted; break;
             case "Attack Speed":
-                attackSpeed.text = $"{val:F2}/s"; break;
+                attackSpeed.text = $"{formatted}/s"; break;
             case "Attack Range":
-                attackRange.text = val.ToString("F2"); break;
+                attackRange.text = formatted; break;
             case "Crit Chance":
-                critChance.text = $"{val*100}%"; break;
+                critChance.text = $"{(isWhole ? ((int)(val * 100)).ToString() : (val * 100).ToString("F2"))}%"; break;
             case "Crit Damage":
-                critDamage.text = $"{val:F2}x"; break;
+                critDamage.text = $"{formatted}x"; break;
         }
     }
     private void UpdateStat(string stat, int val)
     {
+        bool isWhole = Mathf.Approximately(val % 1f, 0f);
+        string formatted = isWhole ? ((int)val).ToString() : val.ToString("F2");
+
         switch (stat)
         {
             case "Movement Speed":
-                moveSpeed.text = val.ToString("F2"); break;
+                moveSpeed.text = formatted; break;
             case "Damage":
-                damage.text = val.ToString("F2"); break;
+                damage.text = formatted; break;
             case "Attack Speed":
-                attackSpeed.text = $"{val:F2}/s"; break;
+                attackSpeed.text = $"{formatted}/s"; break;
             case "Attack Range":
-                attackRange.text = val.ToString("F2"); break;
+                attackRange.text = formatted; break;
             case "Crit Chance":
-                critChance.text = $"{val * 100}%"; break;
+                critChance.text = $"{(isWhole ? ((int)(val * 100)).ToString() : (val * 100).ToString("F2"))}%"; break;
             case "Crit Damage":
-                critDamage.text = $"{val:F2}x"; break;
+                critDamage.text = $"{formatted}x"; break;
         }
     }
 }

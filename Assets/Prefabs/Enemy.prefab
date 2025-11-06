@@ -235,7 +235,7 @@ MonoBehaviour:
   speed: 3
   knockbackForce: 10
   knockbackDuration: 0.5
-  maxHealth: 3
+  maxHealth: 300
   currentHealth: 0
   expReward: 10
   gemReward: 2
@@ -501,9 +501,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 100000
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 100000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

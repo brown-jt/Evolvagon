@@ -57,7 +57,11 @@ public class FloatingDamageText : MonoBehaviour
 
     public void SetValue(float value)
     {
-        damage.text = value.ToString("F2");
+        bool isWhole = Mathf.Approximately(value % 1f, 0f);
+
+        damage.text = isWhole
+            ? ((int)value).ToString()
+            : value.ToString("F2");
     }
     public void SetCrit(bool value)
     {

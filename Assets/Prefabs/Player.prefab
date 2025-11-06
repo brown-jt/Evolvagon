@@ -469,7 +469,7 @@ MonoBehaviour:
   currentHealth: 0
   moveSpeed: 5
   attackRange: 0.5
-  attackDamage: 1
+  attackDamage: 100
   attackSpeed: 0.5
   critChance: 0.1
   critMultiplier: 2

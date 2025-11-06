@@ -1804,6 +1804,7 @@ MonoBehaviour:
   correctSfx: {fileID: 8300000, guid: 529d2e4a70d3f5e4dac7c0be9ed37135, type: 3}
   wrongSfx: {fileID: 8300000, guid: 3ed7fcec30fb83645a679cef762e426f, type: 3}
   completeSfx: {fileID: 8300000, guid: 4a930e867c0f8214a96618bbdb44ded4, type: 3}
+  menuMusic: {fileID: 8300000, guid: 5ddc1be1c9383c146b2f7525dfba083f, type: 3}
   deathScreenPanel: {fileID: 1280054910}
   time: {fileID: 1177845559}
   score: {fileID: 1753082351}
@@ -8965,6 +8966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd97de5ea3adabf4ab1bb2c04c5076ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameMusic: {fileID: 8300000, guid: c5776d38f0db49546ad560fd23544349, type: 3}
 --- !u!1 &1896824801
 GameObject:
   m_ObjectHideFlags: 0

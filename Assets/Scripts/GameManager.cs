@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     // Singleton
     public static GameManager Instance;
 
+    public AudioClip gameMusic;
+
     private int gameScore;
     public int GameScore => gameScore;
 
@@ -14,6 +16,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(gameMusic);
     }
 
     public void AddScore(int amount)

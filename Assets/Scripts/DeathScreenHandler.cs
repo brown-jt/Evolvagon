@@ -17,6 +17,7 @@ public class DeathScreenHandler : MonoBehaviour
     [SerializeField] private AudioClip correctSfx;
     [SerializeField] private AudioClip wrongSfx;
     [SerializeField] private AudioClip completeSfx;
+    [SerializeField] private AudioClip menuMusic;
     [SerializeField] private GameObject deathScreenPanel;
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI score;
@@ -83,12 +84,15 @@ public class DeathScreenHandler : MonoBehaviour
 
     public void RetryButton()
     {
+        AudioManager.Instance.SetBGMusicPitch(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void MenuButton()
     {
         SceneManager.LoadScene("TitleScene");
+        AudioManager.Instance.SetBGMusicPitch(1f);
+        AudioManager.Instance.PlayMusic(menuMusic);
         AudioManager.Instance.MusicSource.Play();
     }
 

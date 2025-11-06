@@ -67,7 +67,7 @@ public class OrbitWeapon : MonoBehaviour
         {
             ProjectileData data = new ProjectileData
             (
-                damage: 1f,
+                damage: 100f,
                 range: 1f,
                 isCritical: Random.value < 0.2f,
                 bulletDirection: direction,
