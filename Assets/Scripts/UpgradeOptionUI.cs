@@ -25,9 +25,30 @@ public class UpgradeOptionUI : MonoBehaviour
         rarityBackground.color = GetRarityColour(data.rarity);
         upgradeName.text = data.upgradeName;
         upgradeDescription.text = data.description;
-        oldValue.text = data.oldValue.ToString("F2");
-        newValue.text = data.newValue.ToString("F2");
+        oldValue.text = FormatStat(data.upgradeName, data.oldValue);
+        newValue.text = FormatStat(data.upgradeName, data.newValue);
         icon.sprite = data.icon;
+    }
+
+    private string FormatStat(string statName, float val)
+    {
+        switch (statName)
+        {
+            case "Movement Speed":
+                return val.ToString("F2");
+            case "Damage":
+                return val.ToString("F2");
+            case "Attack Speed":
+                return $"{val:F2}/s";
+            case "Attack Range":
+                return val.ToString("F2");
+            case "Crit Chance":
+                return $"{val * 100}%";
+            case "Crit Damage":
+                return $"{val:F2}x";
+            default:
+                return val.ToString("F2");
+        }
     }
 
     private Color GetRarityColour(UpgradeRarity rarity)

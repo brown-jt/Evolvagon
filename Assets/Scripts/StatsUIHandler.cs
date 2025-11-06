@@ -44,13 +44,13 @@ public class StatsUIHandler : MonoBehaviour
             case "Damage":
                 damage.text = val.ToString("F2"); break;
             case "Attack Speed":
-                attackSpeed.text = val.ToString("F2"); break;
+                attackSpeed.text = $"{val:F2}/s"; break;
             case "Attack Range":
                 attackRange.text = val.ToString("F2"); break;
             case "Crit Chance":
-                critChance.text = val.ToString("F2"); break;
+                critChance.text = $"{val*100}%"; break;
             case "Crit Damage":
-                critDamage.text = val.ToString("F2"); break;
+                critDamage.text = $"{val:F2}x"; break;
         }
     }
     private void UpdateStat(string stat, int val)
@@ -58,17 +58,17 @@ public class StatsUIHandler : MonoBehaviour
         switch (stat)
         {
             case "Movement Speed":
-                moveSpeed.text = val.ToString(); break;
+                moveSpeed.text = val.ToString("F2"); break;
             case "Damage":
-                damage.text = val.ToString(); break;
+                damage.text = val.ToString("F2"); break;
             case "Attack Speed":
-                attackSpeed.text = val.ToString(); break;
+                attackSpeed.text = $"{val:F2}/s"; break;
             case "Attack Range":
-                attackRange.text = val.ToString(); break;
+                attackRange.text = val.ToString("F2"); break;
             case "Crit Chance":
-                critChance.text = val.ToString(); break;
+                critChance.text = $"{val * 100}%"; break;
             case "Crit Damage":
-                critDamage.text = val.ToString(); break;
+                critDamage.text = $"{val:F2}x"; break;
         }
     }
 }
