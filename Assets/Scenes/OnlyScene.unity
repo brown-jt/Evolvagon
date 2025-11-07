@@ -6590,7 +6590,7 @@ MonoBehaviour:
   skillIcon: {fileID: 608846565}
   cooldown: {fileID: 823712063}
   skillActionReference: {fileID: 1781555164194001046, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  playerSkillsHandler: {fileID: 6591960237080990530}
+  playerSkillsHandler: {fileID: 6591960237080990529}
   skillCooldown: 15
 --- !u!1 &1118063708
 GameObject:
@@ -9240,7 +9240,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
   m_PrefabInstance: {fileID: 6591960237080990528}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591960237080990529}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567b0e6315b6533489e7f1a4ce2ba5ba, type: 3}
@@ -11516,18 +11516,6 @@ PrefabInstance:
       propertyPath: gunSound
       value: 
       objectReference: {fileID: 8300000, guid: e09e0d2c9a4a43c44a768c6b392fc5a4, type: 3}
-    - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
-      propertyPath: attackSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
-      propertyPath: experienceGrowthRate
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 444692808385090977, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
-      propertyPath: baseExperienceToNextLevel
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 2925118873830279520, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -11647,28 +11635,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3997909893924640271, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6591960237080990530}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
---- !u!1 &6591960237080990529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3997909893924640271, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
+--- !u!114 &6591960237080990529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6828221898272327680, guid: c6b3492e006cfcc418643d2bb7e04153, type: 3}
   m_PrefabInstance: {fileID: 6591960237080990528}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6591960237080990530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591960237080990529}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d205664d9c0d27a448d1ef941cd137a9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillsHandler
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -38,6 +38,8 @@ public class PlayerStatsHandler : MonoBehaviour
     public int Level => level;
     public int Gems => gems;
 
+    private bool playerIsImmune = false;
+
     // Events for UI updates
     public event Action<int, int> OnHealthChanged; // CurrentHealth, MaxHealth
     public event Action<float> OnExperienceChanged; // CurrentExperience as a percentage
@@ -59,8 +61,11 @@ public class PlayerStatsHandler : MonoBehaviour
     // Core methods for managing player stats
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        if (!playerIsImmune)
+        {
+            currentHealth -= amount;
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        }
 
         if (currentHealth <= 0)
         {
@@ -204,4 +209,10 @@ public class PlayerStatsHandler : MonoBehaviour
 
         OnIntStatChanged(stat, value);
     }
+
+    public void SetImmune(bool val)
+    {
+        playerIsImmune = val;
+    }
 }
+

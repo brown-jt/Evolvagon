@@ -115,6 +115,96 @@ MonoBehaviour:
   - {fileID: 1552841555, guid: d95ca6a33476f59499868eddf67136fa, type: 3}
   - {fileID: 59809253, guid: d95ca6a33476f59499868eddf67136fa, type: 3}
   spriteRenderer: {fileID: 6994362524747540578}
+--- !u!1 &728407088092573091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115153792048493318}
+  - component: {fileID: 8983089509496428587}
+  m_Layer: 0
+  m_Name: Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &115153792048493318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728407088092573091}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.015, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6798299168314367435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8983089509496428587
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728407088092573091}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 3141447005574318286, guid: 455b096be9f44bf45b3e6677def1dd68, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1747094899693141416
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +340,7 @@ MonoBehaviour:
   detectionCollider: {fileID: 8659175604500274754}
   gunSound: {fileID: 8300000, guid: fcd37dc6910448249a1534becc8dfc11, type: 3}
   levelUpText: {fileID: 1777712861963375292, guid: a6ab1129eee00144ab6c3589259bad98, type: 3}
+  ascensionPanelController: {fileID: 0}
 --- !u!58 &8659175604500274754
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -349,6 +440,7 @@ GameObject:
   - component: {fileID: 5643022197577852660}
   - component: {fileID: 4864255312215775399}
   - component: {fileID: 444692808385090977}
+  - component: {fileID: 6828221898272327680}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -374,6 +466,7 @@ Transform:
   - {fileID: 4866290038598616685}
   - {fileID: 5433137826297793762}
   - {fileID: 5037649278643689083}
+  - {fileID: 115153792048493318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4368943818658621819
@@ -470,16 +563,33 @@ MonoBehaviour:
   moveSpeed: 5
   attackRange: 0.5
   attackDamage: 100
-  attackSpeed: 0.5
+  attackSpeed: 2
   critChance: 0.1
   critMultiplier: 2
   level: 1
   experience: 0
   gems: 0
-  baseExperienceToNextLevel: 100
-  experienceGrowthRate: 2
+  baseExperienceToNextLevel: 40
+  experienceGrowthRate: 1.3
   levelUpClip: {fileID: 8300000, guid: e84d1399b7e7e91449357b2db2a90776, type: 3}
   levelUpText: {fileID: 1777712861963375292, guid: a6ab1129eee00144ab6c3589259bad98, type: 3}
+--- !u!114 &6828221898272327680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997909893924640271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205664d9c0d27a448d1ef941cd137a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillsHandler
+  playerStats: {fileID: 444692808385090977}
+  shieldEffect: {fileID: 728407088092573091}
+  magnetSfx: {fileID: 8300000, guid: 10995d5998800a4498df2fef6a20e783, type: 3}
+  shieldSfx: {fileID: 8300000, guid: ce865c5bc059f1c4cbd40388ea14406e, type: 3}
+  shieldDuration: 3
 --- !u!1 &4834092413274742982
 GameObject:
   m_ObjectHideFlags: 0
