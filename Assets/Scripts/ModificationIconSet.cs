@@ -7,6 +7,6 @@ public class ModificationIconSet : ScriptableObject
     public Sprite explosiveShotIcon;
     public Sprite piercingShotIcon;
     public Sprite bouncingShotIcon;
-    public Sprite recoilShotIcon;
+    public Sprite mirrorShotIcon;
     public Sprite ricochetShotIcon;
 }

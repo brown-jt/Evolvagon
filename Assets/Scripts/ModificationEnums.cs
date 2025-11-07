@@ -4,6 +4,6 @@ public enum ModificationType
     ExplosiveShot,
     PiercingShot,
     BouncingShot,
-    RecoilShot,
+    MirrorShot,
     RicochetShot
 }

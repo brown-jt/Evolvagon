@@ -8932,6 +8932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1883316662}
   - component: {fileID: 1883316663}
+  - component: {fileID: 1883316664}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8967,6 +8968,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   gameMusic: {fileID: 8300000, guid: c5776d38f0db49546ad560fd23544349, type: 3}
+--- !u!114 &1883316664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883316661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10755c0a70838af4d9d93d13d3fcb808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  shootingStarPrefab: {fileID: 7907298248821548352, guid: 1742b294c8007054e8156dacdc4ab58e, type: 3}
 --- !u!1 &1896824801
 GameObject:
   m_ObjectHideFlags: 0

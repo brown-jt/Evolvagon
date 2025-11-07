@@ -20,7 +20,7 @@ public class ManualGun : MonoBehaviour
     private bool explosiveShotEnabled = false;
     private bool piercingShotEnabled = false;
     private bool bouncingShotEnabled = false;
-    private bool recoilShotEnabled = false;
+    private bool mirrorShotEnabled = false;
     private bool ricochetShotEnabled = false;
     private Color projectileColour = Color.white;
 
@@ -89,7 +89,7 @@ public class ManualGun : MonoBehaviour
                 bouncingShotEnabled = true;
                 break;
             case "Recoil Shot":
-                recoilShotEnabled = true;
+                mirrorShotEnabled = true;
                 break;
             case "Ricochet Shot":
                 ricochetShotEnabled = true;
@@ -109,8 +109,8 @@ public class ManualGun : MonoBehaviour
                 return piercingShotEnabled;
             case ModificationType.BouncingShot:
                 return bouncingShotEnabled;
-            case ModificationType.RecoilShot:
-                return recoilShotEnabled;
+            case ModificationType.MirrorShot:
+                return mirrorShotEnabled;
             case ModificationType.RicochetShot:
                 return ricochetShotEnabled;
             default:
@@ -167,7 +167,7 @@ public class ManualGun : MonoBehaviour
             SpawnProjectile(leftDir);
         }
 
-        if (recoilShotEnabled)
+        if (mirrorShotEnabled)
         {
             SpawnProjectile(-aimDirection);
         }

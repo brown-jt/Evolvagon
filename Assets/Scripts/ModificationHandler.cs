@@ -87,10 +87,10 @@ public class ModificationHandler : MonoBehaviour
                 return new ModificationData(name, description, icon,
                     () => manualGun.EnableModification(name));
 
-            case ModificationType.RecoilShot:
-                name = "Recoil Shot";
+            case ModificationType.MirrorShot:
+                name = "Mirror Shot";
                 description = "Tired of getting snuck up on from behind? Well.. do I have the solution for you.. Shoot in front of you and behind you.. AT THE SAME TIME!";
-                icon = modificationIconSet.recoilShotIcon;
+                icon = modificationIconSet.mirrorShotIcon;
                 return new ModificationData(name, description, icon,
                     () => manualGun.EnableModification(name));
 
