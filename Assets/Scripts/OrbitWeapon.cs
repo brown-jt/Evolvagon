@@ -17,6 +17,7 @@ public class OrbitWeapon : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private FloatingText levelUpText;
+    [SerializeField] private AscensionPanelController ascensionPanelController;
 
     private Transform playerTransform;
     private float nextFireTime = 0f;
@@ -30,6 +31,7 @@ public class OrbitWeapon : MonoBehaviour
     private float projectileCritMultiplier = 2f;
 
     private int starsCollected = 0;
+    private int ascensionAmount = 1;
 
     private Canvas worldCanvas;
 
@@ -46,6 +48,7 @@ public class OrbitWeapon : MonoBehaviour
         nextFireTime = Time.time;
 
         worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
+        ascensionPanelController = FindFirstObjectByType<AscensionPanelController>();
     }
 
     private void Update()
@@ -135,24 +138,32 @@ public class OrbitWeapon : MonoBehaviour
         starsCollected++;
 
         // Floating level up text
-        var floatingText = Instantiate(levelUpText, worldCanvas.transform);
-        Vector3 offset = new Vector3(0f, 1f, 0f);
-        floatingText.SetText("STAR UP!");
-        floatingText.transform.position = transform.position + offset;
+        if (starsCollected != ascensionAmount)
+        {
+            var floatingText = Instantiate(levelUpText, worldCanvas.transform);
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            floatingText.SetText("STAR UP!");
+            floatingText.transform.position = transform.position + offset;
+        }
 
-        projectileDamage += 25f;
-        attackSpeed += 0.25f;
-        detectionRadius += 0.5f;
-        projectileRange += 0.5f;
-        projectileCritChance += 0.1f;
-        projectileCritMultiplier += 0.25f;
+        projectileDamage += 20f;
+        attackSpeed += 0.10f;
+        detectionRadius += 0.25f;
+        projectileRange += 0.25f;
+        projectileCritChance += 0.25f;
 
         // set new radius also
         detectionCollider.radius = detectionRadius;
 
-        if (starsCollected == 5)
+        if (starsCollected == ascensionAmount)
         {
-            // TODO - Choose action skill?
+            ascensionPanelController.ShowPanel();
+
+            // Floating ascension text
+            var floatingText = Instantiate(levelUpText, worldCanvas.transform);
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            floatingText.SetText("COSMIC ASCENSION!");
+            floatingText.transform.position = transform.position + offset;
         }
     }
 
