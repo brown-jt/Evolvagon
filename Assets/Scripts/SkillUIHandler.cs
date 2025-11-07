@@ -26,6 +26,7 @@ public class SkillUIHandler : MonoBehaviour
         skillContainer.SetActive(false);
         cooldown.text = string.Empty;
     }
+
     private void OnEnable()
     {
         skillActionReference.action.performed += OnSkillPressed;
