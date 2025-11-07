@@ -31,7 +31,7 @@ public class OrbitWeapon : MonoBehaviour
     private float projectileCritMultiplier = 2f;
 
     private int starsCollected = 0;
-    private int ascensionAmount = 1;
+    private int ascensionAmount = 8;
 
     private Canvas worldCanvas;
 
