@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8ecc2c6abe7e44956f32a0b73aa21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperiencePickup
-  xpAmount: 1
+  pickupSfx: {fileID: 8300000, guid: 242c4279f657e2a48b6472c5ff1d531b, type: 3}
 --- !u!1 &7458927009314318393
 GameObject:
   m_ObjectHideFlags: 0

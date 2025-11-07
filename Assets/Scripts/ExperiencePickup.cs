@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ExperiencePickup : MonoBehaviour
 {
+    [Header("SFXs")]
+    [SerializeField] private AudioClip pickupSfx;
+
     private float expAmount;
     private PlayerStatsHandler playerStats;
     private bool isCollected = false;
@@ -64,6 +67,9 @@ public class ExperiencePickup : MonoBehaviour
             speed = Mathf.Min(speed * 1.1f, maxSpeed);
             yield return null;
         }
+
+        // Play SFX
+        AudioManager.Instance.PlaySFX(pickupSfx);
 
         // Add XP 
         playerStats.AddExperience(expAmount);

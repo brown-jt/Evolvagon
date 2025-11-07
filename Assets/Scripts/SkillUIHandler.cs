@@ -15,7 +15,7 @@ public class SkillUIHandler : MonoBehaviour
     [SerializeField] private PlayerSkillsHandler playerSkillsHandler;
 
     [Header("Skill Settings")]
-    [SerializeField] private float skillCooldown = 15f;
+    [SerializeField] private float skillCooldown;
 
     private bool skillActive = false;
     private bool skillReady = false;
@@ -51,10 +51,12 @@ public class SkillUIHandler : MonoBehaviour
         {
             case "Celestial Magnet":
                 skillIcon.sprite = ascensionIconSet.magnetIcon;
+                skillCooldown = 30f;
                 break;
 
             case "Otherwordly Shield":
                 skillIcon.sprite = ascensionIconSet.shieldIcon;
+                skillCooldown = 15f;
                 break;
         }
 
