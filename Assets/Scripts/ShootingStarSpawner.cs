@@ -4,6 +4,7 @@ public class ShootingStarSpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject shootingStarPrefab;
+    [SerializeField] private PlayerStatsHandler playerStats;
 
     private readonly float spawnDistance = 1f;
     private Camera cam;
@@ -12,10 +13,17 @@ public class ShootingStarSpawner : MonoBehaviour
     {
         cam = Camera.main;
 
-        SpawnStar();
+        if (playerStats != null)
+            playerStats.OnLevelChanged += SpawnStar;
     }
 
-    public void SpawnStar()
+    private void OnDestroy()
+    {
+        if (playerStats != null)
+            playerStats.OnLevelChanged -= SpawnStar;
+    }
+
+    public void SpawnStar(int _)
     {
         Vector2 spawnPos = GetRandomScreenEdgePosition();
         GameObject newStar = Instantiate(shootingStarPrefab, spawnPos, Quaternion.identity);

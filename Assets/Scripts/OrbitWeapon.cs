@@ -10,16 +10,28 @@ public class OrbitWeapon : MonoBehaviour
 
     [Header("Weapon Settings")]
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float fireRate = 2f;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float detectionRadius = 5f;
+    [SerializeField] private float detectionRadius = 3f;
     [SerializeField] private CircleCollider2D detectionCollider;
     [SerializeField] private AudioClip gunSound;
+
+    [Header("References")]
+    [SerializeField] private FloatingText levelUpText;
 
     private Transform playerTransform;
     private float nextFireTime = 0f;
 
     private List<GameObject> enemiesInRange = new List<GameObject>();
+
+    private float projectileDamage = 100f;
+    private float attackSpeed = 0.5f;
+    private float projectileRange = 1f;
+    private float projectileCritChance = 0.1f;
+    private float projectileCritMultiplier = 2f;
+
+    private int starsCollected = 0;
+
+    private Canvas worldCanvas;
 
     private void Start()
     {
@@ -32,6 +44,8 @@ public class OrbitWeapon : MonoBehaviour
         detectionCollider.isTrigger = true;
 
         nextFireTime = Time.time;
+
+        worldCanvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
     }
 
     private void Update()
@@ -42,7 +56,8 @@ public class OrbitWeapon : MonoBehaviour
         if (closestEnemy != null && Time.time >= nextFireTime)
         {
             FireProjectileTowards(closestEnemy);
-            nextFireTime = Time.time + fireRate;
+            float fireInterval = 1f / Mathf.Max(attackSpeed, 0.01f);
+            nextFireTime = Time.time + fireInterval;
         }
     }
     
@@ -67,11 +82,11 @@ public class OrbitWeapon : MonoBehaviour
         {
             ProjectileData data = new ProjectileData
             (
-                damage: 100f,
-                range: 1f,
-                isCritical: Random.value < 0.2f,
+                damage: projectileDamage,
+                range: projectileRange,
+                isCritical: Random.value < projectileCritChance,
                 bulletDirection: direction,
-                critMultiplier: 2f
+                critMultiplier: projectileCritMultiplier
             );
 
             projectile.projectileData = data;
@@ -113,6 +128,32 @@ public class OrbitWeapon : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public void LevelUp()
+    {
+        starsCollected++;
+
+        // Floating level up text
+        var floatingText = Instantiate(levelUpText, worldCanvas.transform);
+        Vector3 offset = new Vector3(0f, 1f, 0f);
+        floatingText.SetText("STAR UP!");
+        floatingText.transform.position = transform.position + offset;
+
+        projectileDamage += 25f;
+        attackSpeed += 0.25f;
+        detectionRadius += 0.5f;
+        projectileRange += 0.5f;
+        projectileCritChance += 0.1f;
+        projectileCritMultiplier += 0.25f;
+
+        // set new radius also
+        detectionCollider.radius = detectionRadius;
+
+        if (starsCollected == 5)
+        {
+            // TODO - Choose action skill?
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

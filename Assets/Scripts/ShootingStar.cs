@@ -12,10 +12,12 @@ public class ShootingStar : MonoBehaviour
     private Vector2 moveDirection;
     private Camera cam;
     private readonly float offscreenDistance = 1f;
+    private OrbitWeapon starWeapon;
 
     private void Start()
     {
         cam = Camera.main;
+        starWeapon = FindFirstObjectByType<OrbitWeapon>();
     }
 
     private void Update()
@@ -47,7 +49,7 @@ public class ShootingStar : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // TODO: Upgrade star weapon
+            starWeapon.LevelUp();
             AudioManager.Instance.PlaySFX(pickupSfx);
             Destroy(gameObject);
         }

@@ -16,5 +16,5 @@ MonoBehaviour:
   explosiveShotIcon: {fileID: 9052668758673309760, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
   piercingShotIcon: {fileID: 8905692395314524455, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
   bouncingShotIcon: {fileID: -1883987932257714611, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
-  recoilShotIcon: {fileID: 2710410759474273871, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
+  mirrorShotIcon: {fileID: 2710410759474273871, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}
   ricochetShotIcon: {fileID: 6459951440308727900, guid: f3abe37951e17774aa7ad746dfab5d90, type: 3}

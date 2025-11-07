@@ -245,11 +245,11 @@ MonoBehaviour:
   orbitSpeed: 90
   orbitRadius: 1.5
   projectilePrefab: {fileID: 4738439718536409011, guid: eec3822ce356e644e8d7fcbdf0a83173, type: 3}
-  fireRate: 2
   projectileSpeed: 10
   detectionRadius: 5
   detectionCollider: {fileID: 8659175604500274754}
   gunSound: {fileID: 8300000, guid: fcd37dc6910448249a1534becc8dfc11, type: 3}
+  levelUpText: {fileID: 1777712861963375292, guid: a6ab1129eee00144ab6c3589259bad98, type: 3}
 --- !u!58 &8659175604500274754
 CircleCollider2D:
   m_ObjectHideFlags: 0
