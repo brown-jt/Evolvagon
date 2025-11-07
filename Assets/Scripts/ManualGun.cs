@@ -81,19 +81,15 @@ public class ManualGun : MonoBehaviour
             case "Triple Shot":
                 tripleShotEnabled = true; break;
             case "Explosive Shot":
-                explosiveShotEnabled = true;
-                break;
+                explosiveShotEnabled = true; break;
             case "Piercing Shot":
                 piercingShotEnabled = true; break;
             case "Bouncing Shot":
-                bouncingShotEnabled = true;
-                break;
-            case "Recoil Shot":
-                mirrorShotEnabled = true;
-                break;
+                bouncingShotEnabled = true; break;
+            case "Mirror Shot":
+                mirrorShotEnabled = true; break;
             case "Ricochet Shot":
-                ricochetShotEnabled = true;
-                break;
+                ricochetShotEnabled = true; break;
         }
     }
 

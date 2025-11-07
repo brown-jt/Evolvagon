@@ -201,3 +201,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movementSpeed: 3
+  rotationSpeed: 360
+  pickupSfx: {fileID: 8300000, guid: 671129505121b4145b30bc7e576f4d6e, type: 3}
