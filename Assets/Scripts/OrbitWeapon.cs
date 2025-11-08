@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class OrbitWeapon : MonoBehaviour
 {
@@ -150,7 +149,7 @@ public class OrbitWeapon : MonoBehaviour
         attackSpeed += 0.10f;
         detectionRadius += 0.25f;
         projectileRange += 0.25f;
-        projectileCritChance += 0.25f;
+        projectileCritChance += 0.025f;
 
         // set new radius also
         detectionCollider.radius = detectionRadius;
