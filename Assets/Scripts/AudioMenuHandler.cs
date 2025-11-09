@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsMenuHandler : MonoBehaviour
+public class AudioMenuHandler : MonoBehaviour
 {
     [Header("Sliders")]
     [SerializeField] private Slider musicSlider;
