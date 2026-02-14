@@ -1,4 +1,4 @@
-Game made as part of my University's "Single-Screen" game jam! Slay the irregular shapes and evolve your polygon! Won first place.
+Game made as part of my University's "Single-Screen" game jam! Slay the irregular shapes and evolve your polygon! _Won first place_.
 
 **WASD** = Movement
 
@@ -8,4 +8,4 @@ Game made as part of my University's "Single-Screen" game jam! Slay the irregula
 
 **P** = Pause
 
-Link to my itch.io plage where you can play in the browser: https://jt-labs.itch.io/evolvagon
+Link to my itch.io paage where you can play in the browser: https://jt-labs.itch.io/evolvagon
